@@ -11,20 +11,20 @@
 
 Object::Object()
 	: m_vPos{}
-	, m_vScale{}
-	, m_pCollider(nullptr)
-	, m_pAnimator(nullptr)
-	, m_bAlive(true)
+	  , m_vScale{}
+	  , m_pCollider(nullptr)
+	  , m_pAnimator(nullptr)
+	  , m_bAlive(true)
 {
 }
 
 Object::Object(const Object& _origin)
-	: m_strName(_origin.m_strName)
-	, m_vPos(_origin.m_vPos)
-	, m_vScale(_origin.m_vScale)
-	, m_pCollider(nullptr)
-	, m_pAnimator(nullptr)
-	, m_bAlive(true)
+	: m_vPos(_origin.m_vPos)
+	  , m_vScale(_origin.m_vScale)
+	  , m_pCollider(nullptr)
+	  , m_pAnimator(nullptr)
+	  , m_strName(_origin.m_strName)
+	  , m_bAlive(true)
 {
 	if (_origin.m_pCollider)
 	{
@@ -67,10 +67,10 @@ void Object::FinalUpdate()
 void Object::Render(HDC _dc)
 {
 	Rectangle(_dc,
-		 (int)(m_vPos.x - m_vScale.x / 2.f)
-		,(int)(m_vPos.y - m_vScale.y / 2.f)
-		,(int)(m_vPos.x + m_vScale.y / 2.f)
-		,(int)(m_vPos.y + m_vScale.y / 2.f));
+	          static_cast<int>(m_vPos.x - m_vScale.x / 2.f)
+	          , static_cast<int>(m_vPos.y - m_vScale.y / 2.f)
+	          , static_cast<int>(m_vPos.x + m_vScale.y / 2.f)
+	          , static_cast<int>(m_vPos.y + m_vScale.y / 2.f));
 	Component_Render(_dc);
 }
 
@@ -83,4 +83,3 @@ void Object::Component_Render(HDC _dc)
 	if (nullptr != m_pAnimator)
 		m_pAnimator->Render(_dc);
 }
-

@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "SceneMgr.h"
 #include "Scene.h"
+
 EventMgr::EventMgr()
 {
 }
@@ -24,7 +25,7 @@ void EventMgr::Update()
 
 	for (size_t i = 0; i < m_vecEvent.size(); i++)
 	{
-		Excute(m_vecEvent[i]);	
+		Excute(m_vecEvent[i]);
 	}
 	m_vecEvent.clear();
 }
@@ -36,26 +37,26 @@ void EventMgr::Excute(const tEvent& _eve)
 	case EVENT_TYPE::CREATE_OBJECT:
 		// lParam: Object Address
 		// wParam: Group Type
-	{
-		Object* pNewObj = (Object*)_eve.lParam;
-		GROUP_TYPE eType = (GROUP_TYPE)_eve.wParam;
-		SceneMgr::GetInst()->GetCurScene()->AddObject(pNewObj, eType);
-	}
+		{
+			auto pNewObj = (Object*)_eve.lParam;
+			auto eType = static_cast<GROUP_TYPE>(_eve.wParam);
+			SceneMgr::GetInst()->GetCurScene()->AddObject(pNewObj, eType);
+		}
 		break;
 	case EVENT_TYPE::DELETE_OBJECT:
-	{
-		// lParam: Object Address
-		// Object를 Dead 상태로 변경하고 삭제예정 오브젝트들을 모아둔다.
-		Object* pDeadObj = (Object*)_eve.lParam;
-		pDeadObj->SetDead();
-		m_vecDead.push_back(pDeadObj);
-	}
+		{
+			// lParam: Object Address
+			// Object를 Dead 상태로 변경하고 삭제예정 오브젝트들을 모아둔다.
+			auto pDeadObj = (Object*)_eve.lParam;
+			pDeadObj->SetDead();
+			m_vecDead.push_back(pDeadObj);
+		}
 		break;
 	case EVENT_TYPE::SCENE_CHANGE:
-	{
-		// lParam: Next Scene Type
-		SceneMgr::GetInst()->ChangeScene((SCENE_TYPE)_eve.lParam);
-	}
+		{
+			// lParam: Next Scene Type
+			SceneMgr::GetInst()->ChangeScene(static_cast<SCENE_TYPE>(_eve.lParam));
+		}
 		break;
 	}
 }

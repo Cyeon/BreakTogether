@@ -1,19 +1,20 @@
 #include "pch.h"
 #include "PathMgr.h"
 #include "Core.h"
+
 PathMgr::PathMgr()
-	:m_szRsrcPath{}
+	: m_szRsrcPath{}
 {
 }
 
-PathMgr::~PathMgr() 
+PathMgr::~PathMgr()
 {
 }
 
 void PathMgr::Init()
 {
 	GetCurrentDirectory(255, m_szRsrcPath);
-	
+
 	int Length = wcslen(m_szRsrcPath);
 
 	// 상위 폴더로

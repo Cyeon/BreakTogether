@@ -2,25 +2,25 @@
 #include "Object.h"
 
 class Image;
+
 class Player :
-    public Object
+	public Object
 {
 private:
-    Image* m_pImage;
+	Image* m_pImage{};
 public:
-    Player();
-    //Player(const Player& _origin) 
-    //    : Object(_origin)
-    //    , m_pImage(_origin.m_pImage)
-    //{}
-    ~Player();
+	Player();
+	//Player(const Player& _origin) 
+	//    : Object(_origin)
+	//    , m_pImage(_origin.m_pImage)
+	//{}
+	~Player() override;
 private:
-    void CreateBullet();
+	void CreateBullet();
 
-//    Player* Clone{ return new Player(*this); }
-    CLONE(Player);
+	//    Player* Clone{ return new Player(*this); }
+	CLONE(Player);
 public:
-    void Update()       override;
-    void Render(HDC _dc) override;
+	void Update() override;
+	void Render(HDC _dc) override;
 };
-

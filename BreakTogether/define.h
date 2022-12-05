@@ -17,10 +17,14 @@
 
 enum class KEY_STATE
 {
-	NONE, // 눌리지 않았고, 이전에도 눌리지 않는 상태
-	TAP, // 막 누른 ㅣ점
-	HOLD, // 누르고 있는
-	AWAY, // 막 뗀 시점(이전 프레임 눌려져있는)
+	NONE,
+	// 눌리지 않았고, 이전에도 눌리지 않는 상태
+	TAP,
+	// 막 누른 ㅣ점
+	HOLD,
+	// 누르고 있는
+	AWAY,
+	// 막 뗀 시점(이전 프레임 눌려져있는)
 };
 
 enum class KEY
@@ -29,10 +33,34 @@ enum class KEY
 	RIGHT,
 	UP,
 	DOWN,
-	Q,W,E,R,T,Y,U,I,O,P,
-	A,S,D,F,G,Z,X,C,V,B,
-	ALT,LSHIFT, CTRL, SPACE, ENTER, ESC,
-	LBTN,RBTN, 
+	Q,
+	W,
+	E,
+	R,
+	T,
+	Y,
+	U,
+	I,
+	O,
+	P,
+	A,
+	S,
+	D,
+	F,
+	G,
+	Z,
+	X,
+	C,
+	V,
+	B,
+	ALT,
+	LSHIFT,
+	CTRL,
+	SPACE,
+	ENTER,
+	ESC,
+	LBTN,
+	RBTN,
 	LAST // 끝 (END=는 있으니까)
 };
 
@@ -61,6 +89,7 @@ enum class BRUSH_TYPE
 	HOLLOW,
 	END,
 };
+
 enum class PEN_TYPE
 {
 	RED,

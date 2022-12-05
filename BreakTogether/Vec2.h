@@ -1,6 +1,6 @@
 #pragma once
 #include<cassert>
-//#include<math.h>
+
 class Vec2
 {
 public:
@@ -15,31 +15,36 @@ public:
 	Vec2(POINT _pt);
 	float Length();
 	Vec2& Normalize();
-	Vec2 operator + (Vec2 _vOther)
+
+	Vec2 operator +(Vec2 _vOther)
 	{
 		return Vec2(x + _vOther.x, y + _vOther.y);
 	}
-	Vec2 operator - (Vec2 _vOther)
+
+	Vec2 operator -(Vec2 _vOther)
 	{
 		return Vec2(x - _vOther.x, y - _vOther.y);
 	}
-	Vec2 operator * (Vec2 _vOther)
+
+	Vec2 operator *(Vec2 _vOther)
 	{
 		return Vec2(x * _vOther.x, y * _vOther.y);
 	}
-	Vec2 operator / (Vec2 _vOther)
+
+	Vec2 operator /(Vec2 _vOther)
 	{
 		assert(!(0.f == _vOther.x || 0.f == _vOther.y));
 		return Vec2(x / _vOther.x, y / _vOther.y);
 	}
-	Vec2 operator * (int _i)
+
+	Vec2 operator *(int _i)
 	{
-		return Vec2(x * (float)_i, y * (float)_i);
+		return Vec2(x * static_cast<float>(_i), y * static_cast<float>(_i));
 	}
-	void operator += (Vec2 _vOther)
+
+	void operator +=(Vec2 _vOther)
 	{
 		x += _vOther.x;
 		y += _vOther.y;
 	}
 };
-

@@ -4,12 +4,13 @@
 #include "Animator.h"
 #include "Image.h"
 #include "Object.h"
+
 Animation::Animation()
 	: m_pAnimator(nullptr)
-	, m_iCurFrm(0)
-	, m_pImage(nullptr)
-	, m_fAccTime(0.f)
-	, m_bFinish(false)
+	  , m_pImage(nullptr)
+	  , m_iCurFrm(0)
+	  , m_fAccTime(0.f)
+	  , m_bFinish(false)
 {
 }
 
@@ -27,7 +28,7 @@ void Animation::Update()
 		++m_iCurFrm;
 		if (m_iCurFrm >= m_vecFrm.size())
 		{
-//			m_iCurFrm = 0;
+			//			m_iCurFrm = 0;
 			m_iCurFrm = -1;
 			m_bFinish = true;
 			m_fAccTime = 0.f;
@@ -55,27 +56,26 @@ void Animation::Render(HDC _dc)
 	//	, (int)(m_vecFrm[m_iCurFrm].vSlice.x				  )
 	//	, (int)(m_vecFrm[m_iCurFrm].vSlice.y				  )
 	//	, RGB(255,0,255));
-	
+
 	// 오프셋으로
 	vPos += m_vecFrm[m_iCurFrm].vOffset; //  object pos에 offset만큼 추가 이동위치
 	TransparentBlt(_dc
-		, (int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
-		, (int)(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.x 			  )
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.y			 )
-		,  m_pImage->GetDC()						  
-		, (int)(m_vecFrm[m_iCurFrm].vLT.x				  )
-		, (int)(m_vecFrm[m_iCurFrm].vLT.y				  )
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.x				  )
-		, (int)(m_vecFrm[m_iCurFrm].vSlice.y				  )
-		, RGB(255,0,255));
-
+	               , static_cast<int>(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
+	               , static_cast<int>(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.x)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.y)
+	               , m_pImage->GetDC()
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vLT.x)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vLT.y)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.x)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.y)
+	               , RGB(255, 0, 255));
 }
 
 void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration)
 {
 	m_pImage = _pImage;
-	tAniFrm frm= {};
+	tAniFrm frm = {};
 	for (UINT i = 0; i < _iFrameCount; i++)
 	{
 		frm.fDuration = _fDuration;

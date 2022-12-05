@@ -3,13 +3,16 @@
 #pragma comment(lib, "fmod_vc")
 enum class SOUND_CHANNEL
 {
-	SC_BGM, SC_EFFECT, SC_END
+	SC_BGM,
+	SC_EFFECT,
+	SC_END
 };
+
 typedef struct tSoundInfo
 {
 	FMOD::Sound* pSound;
 	bool bLoop;
-}SOUNDINFO, * PSOUNDINFO;
+} SOUNDINFO, *PSOUNDINFO;
 
 class SoundMgr
 {
@@ -21,7 +24,7 @@ private:
 private:
 	FMOD::System* m_pSystem;
 	map<wstring, PSOUNDINFO> m_mapSod;
-	FMOD::Channel* m_pChannel[(UINT)SOUND_CHANNEL::SC_END];
+	FMOD::Channel* m_pChannel[static_cast<UINT>(SOUND_CHANNEL::SC_END)];
 
 public:
 	void Init();

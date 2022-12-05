@@ -2,7 +2,8 @@
 #include "BWindow.h"
 #include "Core.h"
 #include "Resource.h"
-BWindow::BWindow() : m_hWnd(0), m_hInstance(0)
+
+BWindow::BWindow() : m_hWnd(nullptr), m_hInstance(nullptr)
 {
 }
 
@@ -23,9 +24,10 @@ LRESULT BWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 }
+
 int BWindow::Run(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-	m_hInstance = hInstance; 
+	m_hInstance = hInstance;
 	this->MyRegisterClass();
 	this->WindowCreate();
 	this->WindowShow(nCmdShow);
@@ -47,7 +49,7 @@ ATOM BWindow::MyRegisterClass()
 	wcex.cbSize = sizeof(WNDCLASSEX);
 
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = BWindow::WndProc;
+	wcex.lpfnWndProc = WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = m_hInstance;
@@ -64,7 +66,7 @@ ATOM BWindow::MyRegisterClass()
 void BWindow::WindowCreate()
 {
 	m_hWnd = CreateWindowW(WINDOW_NAME, L"주뇽's Gameframework", WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInstance, nullptr);
+	                       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInstance, nullptr);
 }
 
 void BWindow::WindowShow(int nCmdShow)
@@ -98,8 +100,7 @@ int BWindow::MessageLoop()
 			// "게임을 진행하지."
 			Core::GetInst()->Progress();
 		}
-
 	}
 
-	return (int)msg.wParam;
+	return static_cast<int>(msg.wParam);
 }

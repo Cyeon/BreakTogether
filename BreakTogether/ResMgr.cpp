@@ -2,6 +2,7 @@
 #include "ResMgr.h"
 #include "PathMgr.h"
 #include "Image.h"
+
 ResMgr::ResMgr()
 {
 }
@@ -29,17 +30,17 @@ Image* ResMgr::ImgLoad(const wstring& _strKey, const wstring& _strRelativePath)
 	pImg->Load(strFilePath);
 	pImg->SetKey(_strKey);
 	pImg->SetRelativePath(_strRelativePath);
-	m_mapImg.insert(make_pair(_strKey , pImg));
-//	m_mapImg.insert({ _strKey , pImg });
+	m_mapImg.insert(make_pair(_strKey, pImg));
+	//	m_mapImg.insert({ _strKey , pImg });
 	return pImg;
 }
 
 Image* ResMgr::ImgFind(const wstring& _strKey)
 {
-	map<wstring, Res*>::iterator iter = m_mapImg.find(_strKey);
+	auto iter = m_mapImg.find(_strKey);
 	if (iter == m_mapImg.end())
 	{
 		return nullptr;
 	}
-	return (Image*)iter->second;
+	return static_cast<Image*>(iter->second);
 }

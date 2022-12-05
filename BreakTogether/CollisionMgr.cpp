@@ -17,13 +17,13 @@ CollisionMgr::~CollisionMgr()
 
 void CollisionMgr::Update()
 {
-	for (UINT Row = 0; Row < (UINT)GROUP_TYPE::END; ++Row)
+	for (UINT Row = 0; Row < static_cast<UINT>(GROUP_TYPE::END); ++Row)
 	{
-		for (UINT Col = Row; Col < (UINT)GROUP_TYPE::END; ++Col)
+		for (UINT Col = Row; Col < static_cast<UINT>(GROUP_TYPE::END); ++Col)
 		{
 			if (m_arrCheck[Row] & (1 << Col))
 			{
-				CollisionGroupUpdate((GROUP_TYPE)Row,(GROUP_TYPE)Col);
+				CollisionGroupUpdate(static_cast<GROUP_TYPE>(Row), static_cast<GROUP_TYPE>(Col));
 			}
 		}
 	}
@@ -55,13 +55,13 @@ void CollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			ID.Left_id = pLeftCol->GetID();
 			ID.Right_id = pRightCol->GetID();
 			iter = m_mapColInfo.find(ID.ID);
-			
+
 
 			// 이전 프레임 충돌한 적 없다!!
 			// 충돌 정보가 미 등록 상태인 경우 등록(충돌하지 않았다 로)
 			if (m_mapColInfo.end() == iter)
 			{
-				m_mapColInfo.insert({ ID.ID, false});
+				m_mapColInfo.insert({ID.ID, false});
 				iter = m_mapColInfo.find(ID.ID);
 			}
 			// 충돌 하네?
@@ -82,7 +82,6 @@ void CollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 					{
 						pLeftCol->StayCollision(pRightCol);
 						pRightCol->StayCollision(pLeftCol);
-
 					}
 				}
 				else
@@ -109,7 +108,6 @@ void CollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 					iter->second = false;
 				}
 			}
-
 		}
 	}
 }
@@ -133,12 +131,12 @@ bool CollisionMgr::IsCollision(Collider* _pLeft, Collider* _pRight)
 void CollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 {
 	// 더 작은 값의 그룹 타입을 행으로, 큰 값을 열(비트)로 사용
-	UINT Row = (UINT)_eLeft;
-	UINT Col = (UINT)_eRight;
+	UINT Row = static_cast<UINT>(_eLeft);
+	UINT Col = static_cast<UINT>(_eRight);
 	if (Col < Row)
 	{
-		Row = (UINT)_eRight;
-		Col = (UINT)_eLeft;
+		Row = static_cast<UINT>(_eRight);
+		Col = static_cast<UINT>(_eLeft);
 	}
 	// 체크가 되어 있다면
 	if (m_arrCheck[Row] &= (1 << Col))
@@ -155,7 +153,5 @@ void CollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 void CollisionMgr::CheckReset()
 {
-	memset(m_arrCheck, 0, sizeof(UINT) * (UINT)GROUP_TYPE::END);
+	memset(m_arrCheck, 0, sizeof(UINT) * static_cast<UINT>(GROUP_TYPE::END));
 }
-
-

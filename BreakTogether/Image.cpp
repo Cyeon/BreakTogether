@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "Image.h"
 #include "Core.h"
+
 Image::Image()
-	: m_hBit(0)
-	, m_hdc(0)
-	, m_bitInfo{}
+	: m_hdc(nullptr)
+	  , m_hBit(nullptr)
+	  , m_bitInfo{}
 {
 }
 
@@ -16,7 +17,8 @@ Image::~Image()
 
 void Image::Load(const wstring& _strFilePath)
 {
-	m_hBit=(HBITMAP)LoadImage(nullptr, _strFilePath.c_str(), IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION | LR_LOADFROMFILE);
+	m_hBit = static_cast<HBITMAP>(LoadImage(nullptr, _strFilePath.c_str(), IMAGE_BITMAP, 0, 0,
+	                                        LR_CREATEDIBSECTION | LR_LOADFROMFILE));
 	assert(m_hBit); // 예외처리
 
 	// 비트맵과 연결할 DC
@@ -24,11 +26,11 @@ void Image::Load(const wstring& _strFilePath)
 	SelectObject(m_hdc, m_hBit);
 
 	// 가로 세로 길이
-//	BITMAP tInfo = {};
+	//	BITMAP tInfo = {};
 	GetObject(m_hBit, sizeof(BITMAP), &m_bitInfo);
 	//tInfo.bmWidth;
 	//tInfo.bmHeight;
-	
+
 
 	//if (nullptr == m_hBit)
 	//{
