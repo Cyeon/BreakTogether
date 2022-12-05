@@ -27,20 +27,6 @@ void Scene_Start::Enter()
 	pObj->SetScale(Vec2(100.f,100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
-//	Object* pOtherPlayer = new Player(*(Player*)pObj);
-	/*Object* pOtherPlayer = pObj->Clone();
-	pOtherPlayer->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2.f + 100.f, Core::GetInst()->GetResolution().y / 2.f));
-	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);*/
-
-	//m_vecObj[(UINT)GROUP_TYPE::DEFAULT].push_back(pObj); 
-
-	// Monster Object 추가
-	//Monster* pMonsterObj = new Monster;
-	//pMonsterObj->SetPos(Vec2(640.f, 50.f));
-	//pMonsterObj->SetScale(Vec2(50.f, 50.f));
-	//pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
-	//AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
-
 	// 몬스터 배치
 	Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 	int iMonster = 16;
@@ -58,14 +44,7 @@ void Scene_Start::Enter()
 		pMonsterObj->SetMoveDistance(fMoveDist);
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
-	//pObj = new Object;
-
-	//pObj->SetPos(Vec2(640.f, 384.f));
-	//pObj->SetScale(Vec2(100.f, 100.f));
-
-	//AddObject(pObj, GROUP_TYPE::DEFAULT);
-	// 충돌 지정 
-	// Player - Monster 그룹 간의 충돌 체크
+	
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BULLET_PLAYER, GROUP_TYPE::MONSTER);
 
