@@ -17,6 +17,7 @@ public:
 	~Player() override;
 private:
 	void CreateBullet();
+	Image* tray_image{};
 
 	//    Player* Clone{ return new Player(*this); }
 	CLONE(Player);

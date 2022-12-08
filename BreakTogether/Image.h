@@ -14,6 +14,7 @@ private:
 	friend class ResMgr;
 public:
 	void Load(const wstring& _strFilePath);
+	void Render(HDC hdc, const Vec2& pos, const Vec2& offset) const;
 	UINT GetWidth() { return m_bitInfo.bmWidth; }
 	UINT GetHeight() { return m_bitInfo.bmHeight; }
 	HDC GetDC() { return m_hdc; }
