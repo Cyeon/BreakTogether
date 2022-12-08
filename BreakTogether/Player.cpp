@@ -19,6 +19,7 @@ Player::Player()
 	// image ���ε�
 	Image* p_img = ResMgr::GetInst()->ImgLoad(L"PlayerAni", L"Image\\character.bmp");
 	tray_image = ResMgr::GetInst()->ImgLoad(L"PlayerTray", L"Image\\tray.bmp");
+	tray_image->SetScale({2.f, 2.f});
 
 	// animator ���� �� animation ���
 	CreateAnimator();
