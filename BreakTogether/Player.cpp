@@ -23,10 +23,10 @@ Player::Player()
 	// animator ���� �� animation ���
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"character_front", pImg, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
-	GetAnimator()->CreateAnimation(L"character_back", pImg, Vec2(0.f, 48.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
-	GetAnimator()->CreateAnimation(L"character_left", pImg, Vec2(0.f, 96.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
-	GetAnimator()->CreateAnimation(L"character_right", pImg, Vec2(0.f, 144.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_front", p_img, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_back", p_img, Vec2(0.f, 48.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_left", p_img, Vec2(0.f, 96.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_right", p_img, Vec2(0.f, 144.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
 
 	GetAnimator()->Play(L"character_front", true);
 
