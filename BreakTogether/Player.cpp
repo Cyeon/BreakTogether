@@ -13,7 +13,7 @@ Player::Player()
 {
 	// collider 새성
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(20.f, 30.f));
+	GetCollider()->SetScale(Vec2(60.f, 75.f));
 
 	// image 업로드
 	Image* pImg = ResMgr::GetInst()->ImgLoad(L"PlayerAni", L"Image\\character.bmp");
@@ -21,21 +21,28 @@ Player::Player()
 	// animator 생성 및 animation 사용
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"character_front", pImg, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
-	GetAnimator()->CreateAnimation(L"character_back", pImg, Vec2(0.f, 48.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
-	GetAnimator()->CreateAnimation(L"character_left", pImg, Vec2(0.f, 96.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
-	GetAnimator()->CreateAnimation(L"character_right", pImg, Vec2(0.f, 144.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
+	GetAnimator()->CreateAnimation(L"character_front", pImg, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_back", pImg, Vec2(0.f, 48.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_left", pImg, Vec2(0.f, 96.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_right", pImg, Vec2(0.f, 144.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
 
 	GetAnimator()->Play(L"character_front", true);
+
+	Vec2 offsetPos = Vec2(-72.5f, -72.5f);
 
 	// animation offset 위로 올리기. 
 	Animation* pAnim = GetAnimator()->FindAnimation(L"character_front");
 	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
-		pAnim->GetFrame(i).vOffset = Vec2(0.f, 0.f);
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"character_back");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"character_left");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"character_right");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
 }
 
 Player::~Player()

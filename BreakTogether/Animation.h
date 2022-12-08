@@ -7,6 +7,7 @@ struct tAniFrm
 	Vec2 vLT;
 	Vec2 vSlice;
 	Vec2 vOffset;
+	Vec2 vAniSize;
 	float fDuration;
 };
 
@@ -46,5 +47,5 @@ public:
 public:
 	void Update();
 	void Render(HDC _dc);
-	void Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration);
+	void Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration, Vec2 _vAniSize);
 };
