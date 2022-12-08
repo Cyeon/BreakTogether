@@ -12,32 +12,39 @@
 
 Player::Player()
 {
-	// collider »õ¼º
+	// collider ï¿½ï¿½ï¿½ï¿½
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(20.f, 30.f));
+	GetCollider()->SetScale(Vec2(60.f, 75.f));
 
-	// image ¾÷·Îµå
+	// image ï¿½ï¿½ï¿½Îµï¿½
 	Image* p_img = ResMgr::GetInst()->ImgLoad(L"PlayerAni", L"Image\\character.bmp");
 	tray_image = ResMgr::GetInst()->ImgLoad(L"PlayerTray", L"Image\\tray.bmp");
 
-	// animator »ý¼º ¹× animation »ç¿ë
+	// animator ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ animation ï¿½ï¿½ï¿½
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"character_front", p_img, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
-	GetAnimator()->CreateAnimation(L"character_back", p_img, Vec2(0.f, 48.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
-	GetAnimator()->CreateAnimation(L"character_left", p_img, Vec2(0.f, 96.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
-	GetAnimator()->CreateAnimation(L"character_right", p_img, Vec2(0.f, 144.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4,
-		0.2f);
+	GetAnimator()->CreateAnimation(L"character_front", pImg, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_back", pImg, Vec2(0.f, 48.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_left", pImg, Vec2(0.f, 96.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
+	GetAnimator()->CreateAnimation(L"character_right", pImg, Vec2(0.f, 144.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 4, 0.2f, Vec2(192.f, 192.f));
 
 	GetAnimator()->Play(L"character_front", true);
 
-	// animation offset À§·Î ¿Ã¸®±â. 
-	Animation* p_anim = GetAnimator()->FindAnimation(L"character_front");
-	for (size_t i = 0; i < p_anim->GetMaxFrame(); i++)
-		p_anim->GetFrame(i).vOffset = Vec2(0.f, 0.f);
+	Vec2 offsetPos = Vec2(-72.5f, -72.5f);
+
+	// animation offset ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½. 
+	Animation* pAnim = GetAnimator()->FindAnimation(L"character_front");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"character_back");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"character_left");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"character_right");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
 }
 
 Player::~Player()

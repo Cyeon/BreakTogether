@@ -62,8 +62,8 @@ void Animation::Render(HDC _dc)
 	TransparentBlt(_dc
 	               , static_cast<int>(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
 	               , static_cast<int>(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.x)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.y)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.x)
+	               , static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.y)
 	               , m_pImage->GetDC()
 	               , static_cast<int>(m_vecFrm[m_iCurFrm].vLT.x)
 	               , static_cast<int>(m_vecFrm[m_iCurFrm].vLT.y)
@@ -72,7 +72,7 @@ void Animation::Render(HDC _dc)
 	               , RGB(255, 0, 255));
 }
 
-void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration)
+void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration, Vec2 _vAniSize)
 {
 	m_pImage = _pImage;
 	tAniFrm frm = {};
@@ -81,6 +81,7 @@ void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep,
 		frm.fDuration = _fDuration;
 		frm.vSlice = _vSliceSize;
 		frm.vLT = _vLT + _vStep * i;
+		frm.vAniSize = _vAniSize;
 		m_vecFrm.push_back(frm);
 	}
 }

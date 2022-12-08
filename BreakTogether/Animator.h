@@ -18,7 +18,7 @@ public:
 	Object* GetObj() { return m_pOwner; }
 public:
 	void CreateAnimation(wstring _strName, Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount,
-	                     float _fDuration);
+	                     float _fDuration,Vec2 _vAniSize);
 	Animation* FindAnimation(wstring _strName);
 	void Play(wstring _strName, bool _bRepeat);
 	void Stop();
