@@ -297,8 +297,7 @@
     <ClCompile Include="MouseMgr.cpp">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Tray.cpp">
-      <Filter>Engine\04. Object\Tray</Filter>
+    <ClCompile Include="Tray.cpp" />
     <ClCompile Include="Block.cpp">
       <Filter>Engine\04. Object\Block</Filter>
     </ClCompile>
