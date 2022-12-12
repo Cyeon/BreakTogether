@@ -86,13 +86,14 @@ void Player::CreateBullet()
 	Vec2 vBulletPos = GetPos();
 	vBulletPos.y -= GetScale().y / 2.f;
 
-	// 
-	auto pBullet = new Bullet;
-	pBullet->SetName(L"Bullet_Player");
-	pBullet->SetPos(vBulletPos);
-	pBullet->SetScale(Vec2(25.f, 25.f));
-	pBullet->SetDir(Vec2(0.f, -1.f));
-	CreateObject(pBullet, GROUP_TYPE::BALL);
+	{ // Bullet
+		Bullet* pBullet = new Bullet;
+		pBullet->SetName(L"Bullet_Player");
+		pBullet->SetPos(vBulletPos);
+		pBullet->SetScale(Vec2(25.f, 25.f));
+		pBullet->SetDir(Vec2(0.f, -1.f));
+		CreateObject(pBullet, GROUP_TYPE::BALL);
+	}
 }
 
 void Player::Render(HDC _dc)
