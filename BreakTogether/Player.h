@@ -10,16 +10,10 @@ private:
 	Image* m_pImage{};
 public:
 	Player();
-	//Player(const Player& _origin) 
-	//    : Object(_origin)
-	//    , m_pImage(_origin.m_pImage)
-	//{}
 	~Player() override;
 private:
 	void CreateBullet();
 	Image* tray_image{};
-
-	//    Player* Clone{ return new Player(*this); }
 	CLONE(Player);
 public:
 	void Update() override;

@@ -193,7 +193,9 @@
     <ClInclude Include="MouseMgr.h">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClInclude>
-    <ClInclude Include="Tray.h" />
+    <ClInclude Include="Tray.h">
+      <Filter>Engine\04. Object\Tray</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -291,6 +293,8 @@
     <ClCompile Include="MouseMgr.cpp">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Tray.cpp" />
+    <ClCompile Include="Tray.cpp">
+      <Filter>Engine\04. Object\Tray</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

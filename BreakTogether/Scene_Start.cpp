@@ -4,12 +4,10 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Core.h"
-#include "Image.h"
-#include "PathMgr.h"
 #include "CollisionMgr.h"
 #include "KeyMgr.h"
-#include "SceneMgr.h"
 #include "SoundMgr.h"
+#include "Tray.h"
 
 Scene_Start::Scene_Start()
 = default;
@@ -22,15 +20,18 @@ void Scene_Start::Enter()
 	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
 	SoundMgr::GetInst()->Play(L"BGM");
 
+	Player* player;
+
 	{ // Player
-		Object* obj = new Player;
+		player = new Player;
+		Object* obj = player;
 		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
 		obj->SetScale(Vec2(100.f, 100.f));
 		AddObject(obj, GROUP_TYPE::PLAYER);
 	}
 
 	{ // Tray
-		Object* obj = new Object;
+		Object* obj = new Tray(*player);
 		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
 		obj->SetScale(Vec2(100.f, 100.f));
 		AddObject(obj, GROUP_TYPE::TRAY);
