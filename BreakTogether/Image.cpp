@@ -45,6 +45,6 @@ void Image::SetScale(const Vec2& p)
 
 void Image::Render(const HDC hdc, const Vec2& pos, const Vec2& offset) const
 {
-	TransparentBlt(hdc, pos.x - offset.x, pos.y - offset.y, m_bitInfo.bmWidth, m_bitInfo.bmHeight,
-		m_hdc, 0, 0, m_bitInfo.bmWidth * static_cast<int>(scale.x), m_bitInfo.bmHeight * static_cast<int>(scale.y), RGB(255, 0, 255));
+	TransparentBlt(hdc, pos.x - offset.x, pos.y - offset.y, m_bitInfo.bmWidth * scale.x, m_bitInfo.bmHeight * scale.y,
+		m_hdc, 0, 0, m_bitInfo.bmWidth, m_bitInfo.bmHeight, RGB(255, 0, 255));
 }

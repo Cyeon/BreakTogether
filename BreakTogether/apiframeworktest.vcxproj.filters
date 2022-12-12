@@ -89,6 +89,9 @@
     <Filter Include="Engine\03. Manager\MouseMgr">
       <UniqueIdentifier>{3c844b62-f7f9-487e-8ee4-a4a02d2fece7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Tray">
+      <UniqueIdentifier>{1cc705c8-c2d3-4c5d-a600-6f39f3b6745d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -190,6 +193,7 @@
     <ClInclude Include="MouseMgr.h">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Tray.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -287,5 +291,6 @@
     <ClCompile Include="MouseMgr.cpp">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClCompile>
+    <ClCompile Include="Tray.cpp" />
   </ItemGroup>
 </Project>

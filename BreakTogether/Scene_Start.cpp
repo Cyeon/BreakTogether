@@ -21,16 +21,23 @@ void Scene_Start::Enter()
 {
 	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
 	SoundMgr::GetInst()->Play(L"BGM");
-	// Object 추가
-	Object* pObj = new Player;
-	pObj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
-	pObj->SetScale(Vec2(100.f, 100.f));
-	AddObject(pObj, GROUP_TYPE::PLAYER);
+
+	{ // Player
+		Object* obj = new Player;
+		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
+		obj->SetScale(Vec2(100.f, 100.f));
+		AddObject(obj, GROUP_TYPE::PLAYER);
+	}
+
+	{ // Tray
+		Object* obj = new Object;
+		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
+		obj->SetScale(Vec2(100.f, 100.f));
+		AddObject(obj, GROUP_TYPE::TRAY);
+	}
 
 	// 몬스터 배치
-	auto vResolution(Vec2 (Core::GetInst()->GetResolution ())
-	)
-	;
+	Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 	int iMonster = 16;
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
@@ -48,7 +55,9 @@ void Scene_Start::Enter()
 	}
 
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
-	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BULLET_PLAYER, GROUP_TYPE::MONSTER);
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::MONSTER);
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::TRAY, GROUP_TYPE::BALL);
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BULLET_MONSTER, GROUP_TYPE::PLAYER);
 }
 
 void Scene_Start::Exit()

@@ -18,8 +18,6 @@ Player::Player()
 
 	// image ���ε�
 	Image* p_img = ResMgr::GetInst()->ImgLoad(L"PlayerAni", L"Image\\character.bmp");
-	tray_image = ResMgr::GetInst()->ImgLoad(L"PlayerTray", L"Image\\tray.bmp");
-	tray_image->SetScale({2.f, 2.f});
 
 	// animator ���� �� animation ���
 	CreateAnimator();
@@ -94,14 +92,10 @@ void Player::CreateBullet()
 	pBullet->SetPos(vBulletPos);
 	pBullet->SetScale(Vec2(25.f, 25.f));
 	pBullet->SetDir(Vec2(0.f, -1.f));
-	CreateObject(pBullet, GROUP_TYPE::BULLET_PLAYER);
-	//Scene* pCurScene = SceneMgr::GetInst()->GetCurScene();
-	//pCurScene->AddObject(pBullet,GROUP_TYPE::BULLET);
+	CreateObject(pBullet, GROUP_TYPE::BALL);
 }
 
 void Player::Render(HDC _dc)
 {
 	Component_Render(_dc);
-	// void Image::Render(const HDC hdc, const Vec2 & pos, const Vec2 & offset) const
-	tray_image->Render(_dc, GetPos(), Vec2(tray_image->GetWidth() / 2, 48 / 4));
 }
