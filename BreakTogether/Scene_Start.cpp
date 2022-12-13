@@ -8,6 +8,8 @@
 #include "KeyMgr.h"
 #include "SoundMgr.h"
 #include "Tray.h"
+#include "Block.h"
+#include "BlockMgr.h"
 
 Scene_Start::Scene_Start()
 = default;
@@ -37,25 +39,31 @@ void Scene_Start::Enter()
 		AddObject(obj, GROUP_TYPE::TRAY);
 	}
 
-	// 몬스터 배치
-	Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
-	int iMonster = 16;
-	float fMoveDist = 25.f;
-	float fObjScale = 50.f;
-	float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iMonster - 1);
-	Monster* pMonsterObj = nullptr;
-	for (int i = 0; i < iMonster; i++)
-	{
-		pMonsterObj = new Monster;
-		pMonsterObj->SetName(L"Monster");
-		pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
-		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
-		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
-		pMonsterObj->SetMoveDistance(fMoveDist);
-		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
+	{ // 몬스터 배치
+		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
+		int iMonster = 16;
+		float fMoveDist = 25.f;
+		float fObjScale = 50.f;
+		float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iMonster - 1);
+		Monster* pMonsterObj = nullptr;
+		for (int i = 0; i < iMonster; i++)
+		{
+			pMonsterObj = new Monster;
+			pMonsterObj->SetName(L"Monster");
+			pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
+			pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
+			pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
+			pMonsterObj->SetMoveDistance(fMoveDist);
+			AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
+		}
 	}
 
-
+	{
+		Object* obj = new Block();
+		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 500));
+		obj->SetScale(Vec2(150.f, 100.f));
+		AddObject(obj, GROUP_TYPE::MONSTER);
+	}
 
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::MONSTER);
