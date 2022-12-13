@@ -34,7 +34,9 @@ int BWindow::Run(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow)
 	this->WindowUpdate();
 
 	// Core 초기화
-	if (FAILED(Core::GetInst()->Init(m_hWnd, POINT{ 1280, 768 })))
+	const POINT screen_res = { GetSystemMetrics(0), GetSystemMetrics(1) };
+
+	if (FAILED(Core::GetInst()->Init(m_hWnd, screen_res)))
 	{
 		MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
 		return FALSE;
@@ -66,7 +68,7 @@ ATOM BWindow::MyRegisterClass()
 void BWindow::WindowCreate()
 {
 	m_hWnd = CreateWindowW(WINDOW_NAME, L"주뇽's Gameframework", WS_OVERLAPPEDWINDOW,
-	                       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInstance, nullptr);
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInstance, nullptr);
 }
 
 void BWindow::WindowShow(int nCmdShow)

@@ -1,8 +1,11 @@
 #pragma once
+#include "BWindow.h"
+#include "define.h"
 #include "Object.h"
+#include "Vec2.h"
 class Image;
 
-class Bullet : public Object
+class Ball : public Object
 {
 	Vec2 m_vDir;
 	Image* m_pImage;
@@ -18,8 +21,11 @@ public:
 	void Render(HDC _dc) override;
 	void EnterCollision(Collider* _pOther) override;
 
-	CLONE(Bullet);
+	CLONE(Ball);
 
-	Bullet();
-	~Bullet() override;
+	Ball();
+	~Ball() override;
+
+private:
+	void Bounce();
 };

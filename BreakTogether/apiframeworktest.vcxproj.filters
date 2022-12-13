@@ -96,7 +96,7 @@
       <UniqueIdentifier>{38452411-b27c-48f0-ac88-a6d4665d667f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\03. Manager\BlockMgr">
-      <UniqueIdentifier>{ac915828-b5cb-4d97-ad51-23408f56a22f}</UniqueIdentifier>
+      <UniqueIdentifier>{74833a37-eb75-46d4-a52a-a11517a56b6b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +148,7 @@
     <ClInclude Include="Monster.h">
       <Filter>Engine\04. Object\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
+    <ClInclude Include="Ball.h">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Res.h">
@@ -257,7 +257,7 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Engine\04. Object\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
+    <ClCompile Include="Ball.cpp">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Res.cpp">

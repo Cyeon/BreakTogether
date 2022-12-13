@@ -12,7 +12,7 @@ public:
 	Player();
 	~Player() override;
 private:
-	void CreateBullet();
+	void CreateBall();
 	Image* tray_image{};
 	CLONE(Player);
 public:

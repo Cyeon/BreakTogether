@@ -39,7 +39,7 @@ void EventMgr::Excute(const tEvent& _eve)
 		// wParam: Group Type
 		{
 			auto pNewObj = (Object*)_eve.lParam;
-			auto eType = static_cast<GROUP_TYPE>(_eve.wParam);
+ 			auto eType = static_cast<GROUP_TYPE>(_eve.wParam);
 			SceneMgr::GetInst()->GetCurScene()->AddObject(pNewObj, eType);
 		}
 		break;

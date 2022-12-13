@@ -52,7 +52,7 @@ void CollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			Collider* pRightCol = vecRight[j]->GetCollider();
 
 			COLLIDER_ID ID;
-			ID.Left_id = pLeftCol->GetID();
+ 			ID.Left_id = pLeftCol->GetID();
 			ID.Right_id = pRightCol->GetID();
 			iter = m_mapColInfo.find(ID.ID);
 
