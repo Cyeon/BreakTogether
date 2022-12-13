@@ -39,7 +39,8 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	m_ptResolution = _ptResolution;
 	RECT rt = {0, 0, m_ptResolution.x, m_ptResolution.y};
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
-	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
+	SetWindowLongPtr(m_hWnd, GWL_STYLE, WS_VISIBLE | WS_POPUP);
+	SetWindowPos(m_hWnd, nullptr, 0, 0, rt.right - rt.left, rt.bottom - rt.top, 0);
 	m_hDC = GetDC(m_hWnd);
 
 	// 이중 버퍼링 용도의 비트맵과 DC를 만든다.

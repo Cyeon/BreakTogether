@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Player.h"
-#include "Bullet.h"
+#include "Ball.h"
 #include "ResMgr.h"
 #include "Collider.h"
 #include "Tray.h"

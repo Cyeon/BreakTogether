@@ -52,7 +52,7 @@ void CollisionMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			Collider* pRightCol = vecRight[j]->GetCollider();
 
 			COLLIDER_ID ID;
-			ID.Left_id = pLeftCol->GetID();
+ 			ID.Left_id = pLeftCol->GetID();
 			ID.Right_id = pRightCol->GetID();
 			iter = m_mapColInfo.find(ID.ID);
 
@@ -139,7 +139,7 @@ void CollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 		Col = static_cast<UINT>(_eLeft);
 	}
 	// 체크가 되어 있다면
-	if (m_arrCheck[Row] &= (1 << Col))
+	if (m_arrCheck[Row] & (1 << Col))
 	{
 		// 체크 풀기
 		m_arrCheck[Row] &= ~(1 << Col);

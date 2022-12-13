@@ -1,26 +1,31 @@
 #include "pch.h"
-#include "Bullet.h"
+#include "Ball.h"
 #include "TimeMgr.h"
 #include "Image.h"
 #include "PathMgr.h"
 #include "ResMgr.h"
 #include "Collider.h"
 
-Bullet::Bullet()
+Ball::Ball()
 	: m_vDir(Vec2(1.f, 1.f))
 {
-	m_pImage = ResMgr::GetInst()->ImgLoad(L"BulletImg", L"Image\\Bullet.bmp");
+	m_pImage = ResMgr::GetInst()->ImgLoad(L"BallImg", L"Image\\ball.bmp");
 	m_vDir.Normalize();
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(15.f, 15.f));
 }
 
-Bullet::~Bullet()
+Ball::~Ball()
 {
 }
 
+void Ball::Bounce()
+{
+	SetDir(Vec2(-m_vDir.x, -m_vDir.y));
+}
 
-void Bullet::Update()
+
+void Ball::Update()
 {
 	Vec2 vPos = GetPos();
 	vPos.x += 700.f * m_vDir.x * fDT;
@@ -28,7 +33,7 @@ void Bullet::Update()
 	SetPos(vPos);
 }
 
-void Bullet::Render(HDC _dc)
+void Ball::Render(HDC _dc)
 {
 	int Width = static_cast<int>(m_pImage->GetWidth());
 	int Height = static_cast<int>(m_pImage->GetHeight());
@@ -44,11 +49,12 @@ void Bullet::Render(HDC _dc)
 	Component_Render(_dc);
 }
 
-void Bullet::EnterCollision(Collider* _pOther)
+void Ball::EnterCollision(Collider* _pOther)
 {
 	Object* pOtherObj = _pOther->GetObj();
-	if (pOtherObj->GetName() == L"Monster")
+	if (pOtherObj->GetName() == L"Block" || pOtherObj->GetName() == L"Tray")
 	{
-		DeleteObject(this);
+		Bounce();
+		//DeleteObject(this);
 	}
 }

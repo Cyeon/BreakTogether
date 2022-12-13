@@ -145,7 +145,7 @@
     <ClInclude Include="Monster.h">
       <Filter>Engine\04. Object\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
+    <ClInclude Include="Ball.h">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Res.h">
@@ -196,9 +196,11 @@
     <ClInclude Include="MouseMgr.h">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClInclude>
-    <ClInclude Include="Tray.h" />
     <ClInclude Include="Block.h">
       <Filter>Engine\04. Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Tray.h">
+      <Filter>Engine\04. Object\Tray</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -249,7 +251,7 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Engine\04. Object\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
+    <ClCompile Include="Ball.cpp">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Res.cpp">
@@ -297,9 +299,11 @@
     <ClCompile Include="MouseMgr.cpp">
       <Filter>Engine\03. Manager\MouseMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Tray.cpp" />
     <ClCompile Include="Block.cpp">
       <Filter>Engine\04. Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Tray.cpp">
+      <Filter>Engine\04. Object\Tray</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

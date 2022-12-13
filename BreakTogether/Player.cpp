@@ -2,14 +2,13 @@
 #include "Player.h"
 #include "KeyMgr.h"
 #include "TimeMgr.h"
-#include "Bullet.h"
+#include "Ball.h"
 #include "ResMgr.h"
 #include "Collider.h"
 #include "Animator.h"
 #include "Animation.h"
 #include "Image.h"
 #include "MouseMgr.h"
-
 Player::Player()
 {
 	// collider ����
@@ -74,25 +73,25 @@ void Player::Update()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		CreateBullet();
+		CreateBall();
 	}
 
 	SetPos(vPos);
 	GetAnimator()->Update();
 }
 
-void Player::CreateBullet()
+void Player::CreateBall()
 {
-	Vec2 vBulletPos = GetPos();
-	vBulletPos.y -= GetScale().y / 2.f;
+	Vec2 vBallPos = GetPos();
+	vBallPos.y -= GetScale().y / 2.f + 10.f;
 
-	{ // Bullet
-		Bullet* pBullet = new Bullet;
-		pBullet->SetName(L"Bullet_Player");
-		pBullet->SetPos(vBulletPos);
-		pBullet->SetScale(Vec2(25.f, 25.f));
-		pBullet->SetDir(Vec2(0.f, -1.f));
-		CreateObject(pBullet, GROUP_TYPE::BALL);
+	{ // Ball
+		Ball* pBall = new Ball;
+		pBall->SetName(L"BALL");
+		pBall->SetPos(vBallPos);
+		pBall->SetScale(Vec2(25.f, 25.f));
+		pBall->SetDir(Vec2(0.f, -1.f));
+		CreateObject(pBall, GROUP_TYPE::BALL);
 	}
 }
 
