@@ -40,7 +40,7 @@ void Scene_Start::Enter()
 		AddObject(obj, GROUP_TYPE::TRAY);
 	}
 
-	{ // 블럭 배치
+	{ // 블럭 배치 <- 이건 머임?? monster인데 블럭?
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 		int iMonster = 16;
 		float fMoveDist = 25.f;
@@ -58,12 +58,14 @@ void Scene_Start::Enter()
 			AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 		}
 	}
-	{
-		Object* obj = new Block();
+	{ //Block
+		Block* obj = new Block();
+		obj->SetName(L"Block");
 		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 500));
+		obj->SetCenterPos(obj->GetPos());
 		obj->SetScale(Vec2(150.f, 100.f));
 		AddObject(obj, GROUP_TYPE::MONSTER);
-	}	
+	}
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::BULLET_MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::BALL);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::TRAY);

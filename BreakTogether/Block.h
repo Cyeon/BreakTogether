@@ -7,6 +7,7 @@ class Block :
 private:
 	int m_iHp;
 	Image* m_pImage;
+	Vec2 m_vCenterPos;
 
 public:
 	Block();
@@ -15,7 +16,8 @@ public:
 	void Update() override;
 	void Render(HDC _dc) override;
 
-	void SetHp(int _iDamage) { m_iHp -= _iDamage; }
+	void SetDamage(int _iDamage) { m_iHp -= _iDamage; }
+	void SetCenterPos(Vec2 _vPos) { m_vCenterPos = _vPos; }
 	int GetHp() { return m_iHp; }
 
 	CLONE(Block);
