@@ -95,6 +95,15 @@
     <Filter Include="Engine\04. Object\Block">
       <UniqueIdentifier>{38452411-b27c-48f0-ac88-a6d4665d667f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Scene\Scene_Title">
+      <UniqueIdentifier>{513bf15d-36e9-4c76-b76c-535f3424f8e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\UI">
+      <UniqueIdentifier>{8cada43f-77db-4e7d-98f7-489ccd0e67dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\UI\Button">
+      <UniqueIdentifier>{5f73228c-7bb4-44a0-bfc8-472e84bf48fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -202,6 +211,12 @@
     <ClInclude Include="Tray.h">
       <Filter>Engine\04. Object\Tray</Filter>
     </ClInclude>
+    <ClInclude Include="Scene_Title.h">
+      <Filter>Engine\05. Scene\Scene_Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Engine\04. Object\UI\Button</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -304,6 +319,12 @@
     </ClCompile>
     <ClCompile Include="Tray.cpp">
       <Filter>Engine\04. Object\Tray</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Title.cpp">
+      <Filter>Engine\05. Scene\Scene_Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Engine\04. Object\UI\Button</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

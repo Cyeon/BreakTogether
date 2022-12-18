@@ -70,6 +70,12 @@ void SoundMgr::Stop(SOUND_CHANNEL _eChannel)
 	m_pChannel[static_cast<UINT>(_eChannel)]->stop();
 }
 
+void SoundMgr::StopAll()
+{
+	for (auto& iter : m_pChannel)
+		iter->stop();
+}
+
 void SoundMgr::Volume(SOUND_CHANNEL _eChannel, float _fVol)
 {
 	m_pChannel[static_cast<UINT>(_eChannel)]->setVolume(_fVol);

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Scene.h"
 #include "Object.h"
+#include "SoundMgr.h"
 
 void Scene::Update()
 {
@@ -85,4 +86,6 @@ Scene::~Scene()
 			delete m_vecObj[i][j];
 		}
 	}
+
+	SoundMgr::GetInst()->StopAll();
 }
