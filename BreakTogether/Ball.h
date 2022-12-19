@@ -13,10 +13,8 @@ class Ball : public Object
 
 	enum class BounceDir
 	{
-		LEFT,
-		RIGHT,
-		TOP,
-		DOWN
+		X,
+		Y
 	};
 
 public:
