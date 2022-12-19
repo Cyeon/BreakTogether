@@ -47,9 +47,6 @@
     <Filter Include="Engine\04. Object\Monster">
       <UniqueIdentifier>{e686519b-9a51-4335-8ed1-4bf722bfbc75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Object\Bullet">
-      <UniqueIdentifier>{847f42a6-7d6d-4e74-8f48-ade7a3898880}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\06. Resource">
       <UniqueIdentifier>{6da22eb3-22a2-49cb-964d-d1fe2361305d}</UniqueIdentifier>
     </Filter>
@@ -107,6 +104,12 @@
     <Filter Include="Engine\04. Object\UI\ImageObject">
       <UniqueIdentifier>{6356d601-5191-48fa-a44c-3f068ddbce46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Ball">
+      <UniqueIdentifier>{847f42a6-7d6d-4e74-8f48-ade7a3898880}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\BlockMgr">
+      <UniqueIdentifier>{e1ab096d-f776-4230-b6bb-cf2169772fc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -158,7 +161,7 @@
       <Filter>Engine\04. Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Ball.h">
-      <Filter>Engine\04. Object\Bullet</Filter>
+      <Filter>Engine\04. Object\Ball</Filter>
     </ClInclude>
     <ClInclude Include="Res.h">
       <Filter>Engine\06. Resource</Filter>
@@ -223,6 +226,9 @@
     <ClInclude Include="ImageObject.h">
       <Filter>Engine\04. Object\UI\ImageObject</Filter>
     </ClInclude>
+    <ClInclude Include="BlockMgr.h">
+      <Filter>Engine\03. Manager\BlockMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -273,7 +279,7 @@
       <Filter>Engine\04. Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Ball.cpp">
-      <Filter>Engine\04. Object\Bullet</Filter>
+      <Filter>Engine\04. Object\Ball</Filter>
     </ClCompile>
     <ClCompile Include="Res.cpp">
       <Filter>Engine\06. Resource</Filter>
@@ -334,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="ImageObject.cpp">
       <Filter>Engine\04. Object\UI\ImageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockMgr.cpp">
+      <Filter>Engine\03. Manager\BlockMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
