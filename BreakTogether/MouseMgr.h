@@ -5,6 +5,8 @@
 struct MouseInfo
 {
 	Vec2 vPos;
+	bool bLButton;
+	bool bRButton;
 };
 
 class MouseMgr

@@ -72,12 +72,14 @@ enum class GROUP_TYPE
 	BULLET_MONSTER,
 	MONSTER,
 	TRAY,
+	UI,
 
 	END = 32,
 };
 
 enum class SCENE_TYPE
 {
+	TITLE,
 	START,
 	SCENE_01,
 	TOOL,

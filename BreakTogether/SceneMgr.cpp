@@ -3,6 +3,7 @@
 #include "Scene_Start.h"
 #include "Scene_01.h"
 #include "EventMgr.h"
+#include "Scene_Title.h"
 
 SceneMgr::SceneMgr()
 	: m_arrScene{}
@@ -32,6 +33,9 @@ void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 void SceneMgr::Init()
 {
 	// Scene 생성
+
+	m_arrScene[static_cast<UINT>(SCENE_TYPE::TITLE)] = new Scene_Title;
+	m_arrScene[static_cast<UINT>(SCENE_TYPE::TITLE)]->SetName(L"Start Title");
 	m_arrScene[static_cast<UINT>(SCENE_TYPE::START)] = new Scene_Start;
 	m_arrScene[static_cast<UINT>(SCENE_TYPE::START)]->SetName(L"Start Scene");
 	m_arrScene[static_cast<UINT>(SCENE_TYPE::SCENE_01)] = new Scene_01;
@@ -42,7 +46,7 @@ void SceneMgr::Init()
 
 
 	// 현재 씬 지정
-	m_pCurScene = m_arrScene[static_cast<UINT>(SCENE_TYPE::START)];
+	m_pCurScene = m_arrScene[static_cast<UINT>(SCENE_TYPE::TITLE)];
 	m_pCurScene->Enter();
 }
 

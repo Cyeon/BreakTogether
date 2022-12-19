@@ -9,6 +9,8 @@ public:
 public:
 	Vec2();
 	~Vec2();
+	Vec2 operator-(const Vec2& vec2) const;
+	POINT toPoint();
 	Vec2(float _x, float _y);
 	Vec2(int _x, int _y);
 	Vec2(long _x, long _y);

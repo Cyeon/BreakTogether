@@ -16,8 +16,8 @@ private:
 public:
 	void Load(const wstring& _strFilePath);
 	void Render(HDC hdc, const Vec2& pos, const Vec2& offset) const;
-	UINT GetWidth() { return m_bitInfo.bmWidth; }
-	UINT GetHeight() { return m_bitInfo.bmHeight; }
+	UINT GetWidth() { return m_bitInfo.bmWidth * scale.x; }
+	UINT GetHeight() { return m_bitInfo.bmHeight * scale.y; }
 	HDC GetDC() { return m_hdc; }
 	void SetScale(const Vec2& p);
 };

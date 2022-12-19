@@ -45,6 +45,12 @@ void Image::SetScale(const Vec2& p)
 
 void Image::Render(const HDC hdc, const Vec2& pos, const Vec2& offset) const
 {
-	TransparentBlt(hdc, pos.x - offset.x, pos.y - offset.y, m_bitInfo.bmWidth * scale.x, m_bitInfo.bmHeight * scale.y,
+	// render image using TransparentBlt
+	// image's center is pos
+
+	Vec2 center = pos - offset;
+
+	TransparentBlt(hdc, center.x - m_bitInfo.bmWidth / 2 * scale.x, center.y - m_bitInfo.bmHeight / 2 * scale.y,
+		m_bitInfo.bmWidth * scale.x, m_bitInfo.bmHeight * scale.y,
 		m_hdc, 0, 0, m_bitInfo.bmWidth, m_bitInfo.bmHeight, RGB(255, 0, 255));
 }

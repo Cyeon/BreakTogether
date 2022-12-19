@@ -5,6 +5,7 @@
 #include "PathMgr.h"
 #include "ResMgr.h"
 #include "Collider.h"
+#include "Core.h"
 
 Ball::Ball()
 	: m_vDir(Vec2(1.f, 1.f))
@@ -19,8 +20,9 @@ Ball::~Ball()
 {
 }
 
-void Ball::Bounce()
+void Ball::Bounce(BounceDir bounce_dir)
 {
+
 	SetDir(Vec2(-m_vDir.x, -m_vDir.y));
 }
 
@@ -31,6 +33,11 @@ void Ball::Update()
 	vPos.x += 700.f * m_vDir.x * fDT;
 	vPos.y += 700.f * m_vDir.y * fDT;
 	SetPos(vPos);
+
+	if (vPos.x < 0)
+	{
+		
+	}
 }
 
 void Ball::Render(HDC _dc)
@@ -52,9 +59,8 @@ void Ball::Render(HDC _dc)
 void Ball::EnterCollision(Collider* _pOther)
 {
 	Object* pOtherObj = _pOther->GetObj();
-	if (pOtherObj->GetName() == L"Block" || pOtherObj->GetName() == L"Tray")
+	if (pOtherObj->GetName() == L"Block")
 	{
-		Bounce();
-		//DeleteObject(this);
+		Bounce(BounceDir::TOP);
 	}
 }

@@ -11,6 +11,19 @@ Vec2::~Vec2()
 {
 }
 
+Vec2 Vec2::operator-(const Vec2& vec2) const
+{
+	return Vec2(x - vec2.x, y - vec2.y);
+}
+
+POINT Vec2::toPoint()
+{
+	POINT pt;
+	pt.x = static_cast<LONG>(x);
+	pt.y = static_cast<LONG>(y);
+	return pt;
+}
+
 Vec2::Vec2(float _x, float _y)
 	: x(_x)
 	  , y(_y)
