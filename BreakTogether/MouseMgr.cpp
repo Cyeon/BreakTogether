@@ -26,6 +26,24 @@ void MouseMgr::Update()
 		mouse_info_.vPos.x = lp_point->x;
 		mouse_info_.vPos.y = lp_point->y;
 	}
+	
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+	{
+		mouse_info_.bLButton = true;
+	}
+	else
+	{
+		mouse_info_.bLButton = false;
+	}
+
+	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
+	{
+		mouse_info_.bRButton = true;
+	}
+	else
+	{
+		mouse_info_.bRButton = false;
+	}
 }
 
 void MouseMgr::Init()

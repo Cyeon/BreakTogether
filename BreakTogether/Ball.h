@@ -10,6 +10,15 @@ class Ball : public Object
 	Vec2 m_vDir;
 	Image* m_pImage;
 
+
+	enum class BounceDir
+	{
+		LEFT,
+		RIGHT,
+		TOP,
+		DOWN
+	};
+
 public:
 	void SetDir(Vec2 _vDir)
 	{
@@ -27,5 +36,5 @@ public:
 	~Ball() override;
 
 private:
-	void Bounce();
+	void Bounce(BounceDir bounce_dir);
 };

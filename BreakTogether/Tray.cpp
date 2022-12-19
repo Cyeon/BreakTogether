@@ -25,7 +25,7 @@ void Tray::Update()
 
 void Tray::Render(HDC _dc)
 {
-	image_->Render(_dc, GetPos(), Vec2(90.f, 0.f));
+	image_->Render(_dc, GetPos(), Vec2(0.f, 0.f));
 	Component_Render(_dc);
 }
 

@@ -104,6 +104,9 @@
     <Filter Include="Engine\04. Object\UI\Button">
       <UniqueIdentifier>{5f73228c-7bb4-44a0-bfc8-472e84bf48fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\UI\ImageObject">
+      <UniqueIdentifier>{6356d601-5191-48fa-a44c-3f068ddbce46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -217,6 +220,9 @@
     <ClInclude Include="Button.h">
       <Filter>Engine\04. Object\UI\Button</Filter>
     </ClInclude>
+    <ClInclude Include="ImageObject.h">
+      <Filter>Engine\04. Object\UI\ImageObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -325,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Engine\04. Object\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageObject.cpp">
+      <Filter>Engine\04. Object\UI\ImageObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
