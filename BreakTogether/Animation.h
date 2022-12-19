@@ -9,6 +9,7 @@ struct tAniFrm
 	Vec2 vOffset;
 	Vec2 vAniSize;
 	float fDuration;
+	bool bIsCyan;
 };
 
 class Animation
@@ -47,5 +48,5 @@ public:
 public:
 	void Update();
 	void Render(HDC _dc);
-	void Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration, Vec2 _vAniSize);
+	void Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration, Vec2 _vAniSize, bool isCyan = false);
 };

@@ -1,15 +1,17 @@
 #pragma once
 #include "Object.h"
-
+class Image;
 class Monster :
 	public Object
 {
 private:
+	Image* m_pImage;
 	float m_fSpeed;
 	Vec2 m_vCenterPos;
 	float m_fMaxDistance;
 	int m_iDir; // 1, -1
 	int m_iHp;
+	bool isDamaged = false;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _f) { m_fSpeed = _f; }

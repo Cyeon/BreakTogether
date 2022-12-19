@@ -7,10 +7,10 @@
 
 Animation::Animation()
 	: m_pAnimator(nullptr)
-	  , m_pImage(nullptr)
-	  , m_iCurFrm(0)
-	  , m_fAccTime(0.f)
-	  , m_bFinish(false)
+	, m_pImage(nullptr)
+	, m_iCurFrm(0)
+	, m_fAccTime(0.f)
+	, m_bFinish(false)
 {
 }
 
@@ -59,20 +59,36 @@ void Animation::Render(HDC _dc)
 
 	// 오프셋으로
 	vPos += m_vecFrm[m_iCurFrm].vOffset; //  object pos에 offset만큼 추가 이동위치
+
+	if (m_vecFrm[m_iCurFrm].bIsCyan) {
+		TransparentBlt(_dc
+			, static_cast<int>(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
+			, static_cast<int>(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
+			, static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.x)
+			, static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.y)
+			, m_pImage->GetDC()
+			, static_cast<int>(m_vecFrm[m_iCurFrm].vLT.x)
+			, static_cast<int>(m_vecFrm[m_iCurFrm].vLT.y)
+			, static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.x)
+			, static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.y)
+			, RGB(0, 255, 255));
+		return;
+	}
+
 	TransparentBlt(_dc
-	               , static_cast<int>(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
-	               , static_cast<int>(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.x)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.y)
-	               , m_pImage->GetDC()
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vLT.x)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vLT.y)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.x)
-	               , static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.y)
-	               , RGB(255, 0, 255));
+		, static_cast<int>(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f)
+		, static_cast<int>(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f)
+		, static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.x)
+		, static_cast<int>(m_vecFrm[m_iCurFrm].vAniSize.y)
+		, m_pImage->GetDC()
+		, static_cast<int>(m_vecFrm[m_iCurFrm].vLT.x)
+		, static_cast<int>(m_vecFrm[m_iCurFrm].vLT.y)
+		, static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.x)
+		, static_cast<int>(m_vecFrm[m_iCurFrm].vSlice.y)
+		, RGB(255, 0, 255));
 }
 
-void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration, Vec2 _vAniSize)
+void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount, float _fDuration, Vec2 _vAniSize, bool isCyan)
 {
 	m_pImage = _pImage;
 	tAniFrm frm = {};
@@ -82,6 +98,7 @@ void Animation::Create(Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep,
 		frm.vSlice = _vSliceSize;
 		frm.vLT = _vLT + _vStep * i;
 		frm.vAniSize = _vAniSize;
+		frm.bIsCyan = isCyan;
 		m_vecFrm.push_back(frm);
 	}
 }

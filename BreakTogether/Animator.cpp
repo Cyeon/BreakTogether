@@ -4,8 +4,8 @@
 
 Animator::Animator()
 	: m_pOwner(nullptr)
-	  , m_pCurAni(nullptr)
-	  , m_bRepeat(false)
+	, m_pCurAni(nullptr)
+	, m_bRepeat(false)
 {
 }
 
@@ -15,7 +15,7 @@ Animator::~Animator()
 }
 
 void Animator::CreateAnimation(const wstring _strName, Image* _pImage, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep,
-                               UINT _iFrameCount, float _fDuration,Vec2 _vAniSize)
+	UINT _iFrameCount, float _fDuration, Vec2 _vAniSize, bool bIsCyan)
 {
 	Animation* pAnim = FindAnimation(_strName);
 	assert(nullptr == pAnim);
@@ -24,8 +24,8 @@ void Animator::CreateAnimation(const wstring _strName, Image* _pImage, Vec2 _vLT
 	pAnim->SetName(_strName);
 	pAnim->m_pAnimator = this;
 
-	pAnim->Create(_pImage, _vLT, _vSliceSize, _vStep, _iFrameCount, _fDuration,_vAniSize);
-	m_mapAni.insert({_strName, pAnim});
+	pAnim->Create(_pImage, _vLT, _vSliceSize, _vStep, _iFrameCount, _fDuration, _vAniSize, bIsCyan);
+	m_mapAni.insert({ _strName, pAnim });
 }
 
 Animation* Animator::FindAnimation(const wstring _strName)
