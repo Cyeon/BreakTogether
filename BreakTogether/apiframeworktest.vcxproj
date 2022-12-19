@@ -43,7 +43,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -160,6 +160,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="BlockMgr.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="BWindow.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -188,6 +189,7 @@
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="Scene_01.h" />
     <ClInclude Include="Scene_Start.h" />
+    <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="SelectGDI.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundMgr.h" />
@@ -202,6 +204,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="BlockMgr.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Core.cpp" />
@@ -227,6 +230,7 @@
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="Scene_01.cpp" />
     <ClCompile Include="Scene_Start.cpp" />
+    <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
