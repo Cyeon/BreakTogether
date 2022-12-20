@@ -11,7 +11,7 @@ private:
 	float m_fMaxDistance;
 	int m_iDir; // 1, -1
 	int m_iHp;
-	bool isDamaged = false;
+	bool isDamaged;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _f) { m_fSpeed = _f; }
@@ -19,6 +19,7 @@ public:
 	void SetMoveDistance(float _f) { m_fMaxDistance = _f; }
 public:
 	void Update() override;
+	void Render(HDC _dc) override;
 	void EnterCollision(Collider* _pOther) override;
 	//    Monster* Clone() { return new Monster(*this); }
 	CLONE(Monster);

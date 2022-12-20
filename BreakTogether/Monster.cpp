@@ -11,20 +11,31 @@ Monster::Monster()
 	, m_fMaxDistance(50.f)
 	, m_iDir(1)
 	, m_iHp(5)
+	, isDamaged(false)
 {
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(40.f, 40.f));
+	GetCollider()->SetScale(Vec2(60.f, 60.f));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 35.f));
 
 	m_pImage = ResMgr::GetInst()->ImgLoad(L"MonsterAni", L"Image\\monster.bmp");
 
 	CreateAnimator();
-
 	Vec2 vLT = Vec2(0.f, 0.f);
 	Vec2 vSliceSize = Vec2(32.f, 32.f);
 	Vec2 vStep = Vec2(32.f, 0.f);
-	Vec2 vAniSize = Vec2(50.f, 50.f);
+	Vec2 vAniSize = Vec2(100.f, 100.f);
 	GetAnimator()->CreateAnimation(L"monster_front", m_pImage, vLT, vSliceSize, vStep, 4, 0.2f, vAniSize, true);
+	vLT = Vec2(0.f, 33.f);
 	GetAnimator()->CreateAnimation(L"monster_damage", m_pImage, vLT, vSliceSize, vStep, 4, 0.2f, vAniSize, true);
+
+	Vec2 offsetPos = Vec2(-35.f, 0.f);
+
+	Animation * pAnim = GetAnimator()->FindAnimation(L"monster_front");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
+	pAnim = GetAnimator()->FindAnimation(L"monster_damage");
+	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
+		pAnim->GetFrame(i).vOffset = offsetPos;
 }
 
 Monster::~Monster()
@@ -33,14 +44,19 @@ Monster::~Monster()
 
 void Monster::Update()
 {
+
+}
+
+void Monster::Render(HDC _dc)
+{
 	if (isDamaged) {
-		GetAnimator()->Play(L"monster_damage", false);
-		isDamaged = false;
+		GetAnimator()->Play(L"monster_damage", true);
+		//isDamaged = false;
+		return;
 	}
-	else
-	{
-		GetAnimator()->Play(L"monster_front", true);
-	}
+	GetAnimator()->Play(L"monster_front", true);
+	GetAnimator()->Update();
+	Component_Render(_dc);
 }
 
 void Monster::EnterCollision(Collider* _pOther)
