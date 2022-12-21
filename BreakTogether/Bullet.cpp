@@ -10,7 +10,7 @@ Bullet::Bullet()
 	, m_pImage(nullptr)
 
 {
-	m_pImage = ResMgr::GetInst()->ImgLoad(L"BulletImg", L"Image\\Ball.bmp");
+	m_pImage = ResMgr::GetInst()->ImgLoad(L"BulletImg", L"Image\\bullet.bmp");
 	CreateCollider();
 }
 

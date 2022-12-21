@@ -45,7 +45,7 @@ void TimeMgr::Update()
 void TimeMgr::Render()
 {
 	++m_iCallCount; //호출횟수 누적
-
+	m_dPlayTime += m_dDT;
 	m_dAcc += m_dDT; //DT(델타타임) 누적
 	if (m_dAcc >= 1.) //1초가 지났나면 fps 계산
 	{

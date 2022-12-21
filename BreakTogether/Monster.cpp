@@ -51,10 +51,8 @@ Monster::~Monster()
 
 void Monster::Update()
 {
-	if (lastTime + delay <= TimeMgr::GetInst()->GetfDT()) {
-
-	}
-	if (KEY_TAP(KEY::SPACE)) {
+	if (lastTime + delay <= TimeMgr::GetInst()->GetPlayTime()) {
+		lastTime = TimeMgr::GetInst()->GetPlayTime();
 		CreateBullet();
 	}
 }

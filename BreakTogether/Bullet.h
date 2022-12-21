@@ -17,13 +17,6 @@ public:
     virtual void Update() override;
     virtual void Render(HDC _dc) override;
 public:
-    //void SetDir(bool _b)
-    //{
-    //    if (_b) // À§
-    //        m_fDir = -1.f;
-    //    else
-    //        m_fDir = 1.f;
-    //}
     CLONE(Bullet);
 
     void SetDir(float _fTheta)
