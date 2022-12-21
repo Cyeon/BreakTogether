@@ -60,21 +60,25 @@ void Scene_Start::Enter()
 	}
 	{ //Block
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
-		int iBlock = 16;
+		int iBlock = 30;
+		int iLine = 4;
 		float fMoveDist = 25.f;
 		float fObjScale = 64.f;
 		float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iBlock - 1);
 
 		Block* obj = nullptr;
 
-		for (int i = 0; i < iBlock; i++)
+		for (int i = 0; i < iLine; i++)
 		{
-			obj = new Block();
-			obj->SetName(L"Block");
-			obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
-			obj->SetCenterPos(obj->GetPos());
-			obj->SetScale(Vec2(150.f, 100.f));
-			AddObject(obj, GROUP_TYPE::MONSTER);
+			for (int j = 0; j < iBlock; j++)
+			{
+				obj = new Block();
+				obj->SetName(L"Block");
+				obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(j) * fTerm, 200.f + static_cast<float>(i) * fObjScale));
+				obj->SetCenterPos(obj->GetPos());
+				obj->SetScale(Vec2(150.f, 100.f));
+				AddObject(obj, GROUP_TYPE::MONSTER);
+			}
 		}
 	}
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::BULLET_MONSTER);

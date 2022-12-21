@@ -86,6 +86,4 @@ Scene::~Scene()
 			delete m_vecObj[i][j];
 		}
 	}
-
-	SoundMgr::GetInst()->StopAll();
 }

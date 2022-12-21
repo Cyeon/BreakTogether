@@ -72,8 +72,10 @@ void SoundMgr::Stop(SOUND_CHANNEL _eChannel)
 
 void SoundMgr::StopAll()
 {
-	for (auto& iter : m_pChannel)
-		iter->stop();
+	for (const auto& channel : m_pChannel)
+	{
+		channel->stop();
+	}
 }
 
 void SoundMgr::Volume(SOUND_CHANNEL _eChannel, float _fVol)

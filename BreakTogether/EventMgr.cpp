@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "SceneMgr.h"
 #include "Scene.h"
+#include "SoundMgr.h"
 
 EventMgr::EventMgr()
 {
@@ -55,6 +56,7 @@ void EventMgr::Excute(const tEvent& _eve)
 	case EVENT_TYPE::SCENE_CHANGE:
 		{
 			// lParam: Next Scene Type
+			SoundMgr::GetInst()->StopAll();
 			SceneMgr::GetInst()->ChangeScene(static_cast<SCENE_TYPE>(_eve.lParam));
 		}
 		break;
