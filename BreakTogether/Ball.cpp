@@ -21,6 +21,8 @@ Ball::~Ball()
 
 void Ball::Bounce(BounceDir bounce_dir)
 {
+	if (m_bounce) return;
+	m_bounce = true;
 	switch (bounce_dir)
 	{
 	case Ball::BounceDir::X:
@@ -37,6 +39,7 @@ void Ball::Bounce(BounceDir bounce_dir)
 
 void Ball::Update()
 {
+	m_bounce = false;
 	Vec2 vPos = GetPos();
 
 	if (vPos.x < 0 || vPos.x > Core::GetInst()->GetResolution().x)

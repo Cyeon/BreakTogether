@@ -9,6 +9,7 @@ class Ball : public Object
 {
 	Vec2 m_vDir;
 	Image* m_pImage;
+	bool m_bounce = false;
 
 
 	enum class BounceDir

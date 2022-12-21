@@ -42,20 +42,15 @@ void Scene_Start::Enter()
 	
 	{ //Block
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
-		int iBlock = 16;
-		float fMoveDist = 25.f;
-		float fObjScale = 64.f;
-		float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iBlock - 1);
+		vResolution.x -= 100;
 
-		Block* obj = nullptr;
+		int blockCount = 28;
 
-		for (int i = 0; i < iBlock; i++)
+		for (int i = 0; i < blockCount; ++i)
 		{
-			obj = new Block();
-			obj->SetName(L"Block");
-			obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 300.f));
-			obj->SetCenterPos(obj->GetPos());
-			obj->SetScale(Vec2(150.f, 100.f));
+			Object* obj = new Block;
+			obj->SetPos(Vec2(vResolution.x / blockCount * i + 82, vResolution.y / 2));
+			obj->SetScale(Vec2(100.f, 100.f));
 			AddObject(obj, GROUP_TYPE::MONSTER);
 		}
 	}
