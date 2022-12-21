@@ -12,13 +12,15 @@ private:
 	int m_iDir; // 1, -1
 	int m_iHp;
 	bool isDamaged;
-	float delay;
-	float lastTime;
+	float atkDelay;
+	float lastAtkTime;
+	float aniDelayTime;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _f) { m_fSpeed = _f; }
 	void SetCenterPos(Vec2 _vPos) { m_vCenterPos = _vPos; }
 	void SetMoveDistance(float _f) { m_fMaxDistance = _f; }
+	void SetDelay();
 public:
 	void Update() override;
 	void Render(HDC _dc) override;

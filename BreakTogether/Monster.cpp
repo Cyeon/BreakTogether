@@ -17,12 +17,15 @@ Monster::Monster()
 	, m_iDir(1)
 	, m_iHp(5)
 	, isDamaged(false)
-	, delay(1.5f)
-	, lastTime(0.f)
+	, atkDelay(1.5f)
+	, lastAtkTime(0.f)
+	, aniDelayTime(0.f)
 {
+	srand(time(NULL));
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(60.f, 60.f));
 	GetCollider()->SetOffsetPos(Vec2(0.f, 35.f));
+
 
 	m_pImage = ResMgr::GetInst()->ImgLoad(L"MonsterAni", L"Image\\monster.bmp");
 
@@ -32,8 +35,8 @@ Monster::Monster()
 	Vec2 vStep = Vec2(32.f, 0.f);
 	Vec2 vAniSize = Vec2(100.f, 100.f);
 	GetAnimator()->CreateAnimation(L"monster_front", m_pImage, vLT, vSliceSize, vStep, 4, 0.2f, vAniSize, true);
-	vLT = Vec2(0.f, 33.f);
-	GetAnimator()->CreateAnimation(L"monster_damage", m_pImage, vLT, vSliceSize, vStep, 4, 0.2f, vAniSize, true);
+	vLT = Vec2(0.f, 32.f);
+	GetAnimator()->CreateAnimation(L"monster_damage", m_pImage, vLT, vSliceSize, vStep, 3, 0.2f, vAniSize, true);
 
 	Vec2 offsetPos = Vec2(-35.f, 0.f);
 
@@ -51,20 +54,36 @@ Monster::~Monster()
 
 void Monster::Update()
 {
-	if (lastTime + delay <= TimeMgr::GetInst()->GetPlayTime()) {
-		lastTime = TimeMgr::GetInst()->GetPlayTime();
+	if (lastAtkTime + atkDelay <= TimeMgr::GetInst()->GetPlayTime()) {
+		lastAtkTime = TimeMgr::GetInst()->GetPlayTime();
 		CreateBullet();
+		SetDelay();
+		if (atkDelay < 0.6f) {
+			atkDelay = 0.6f;
+		}
 	}
+}
+
+void Monster::SetDelay()
+{
+	float randomDelay = (rand() % 15) * 0.1f;
+	atkDelay = randomDelay;
 }
 
 void Monster::Render(HDC _dc)
 {
 	if (isDamaged) {
+		aniDelayTime += fDT;
 		GetAnimator()->Play(L"monster_damage", true);
-		//isDamaged = false;
-		return;
+		if (aniDelayTime >= 1.5f) {
+			isDamaged = false;
+			aniDelayTime = 0.0f;
+		}
 	}
-	GetAnimator()->Play(L"monster_front", true);
+	else
+	{
+		GetAnimator()->Play(L"monster_front", true);
+	}
 	GetAnimator()->Update();
 	Component_Render(_dc);
 }
