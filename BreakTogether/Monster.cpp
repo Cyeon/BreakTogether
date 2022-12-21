@@ -5,6 +5,11 @@
 #include "Animator.h"
 #include "Animation.h"
 #include "ResMgr.h"
+#include "Bullet.h"
+#include "Scene.h"
+#include "SceneMgr.h"
+#include "KeyMgr.h"
+
 Monster::Monster()
 	: m_fSpeed(100.f)
 	, m_vCenterPos(Vec2(0.f, 0.f))
@@ -12,6 +17,8 @@ Monster::Monster()
 	, m_iDir(1)
 	, m_iHp(5)
 	, isDamaged(false)
+	, delay(1.5f)
+	, lastTime(0.f)
 {
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(60.f, 60.f));
@@ -30,7 +37,7 @@ Monster::Monster()
 
 	Vec2 offsetPos = Vec2(-35.f, 0.f);
 
-	Animation * pAnim = GetAnimator()->FindAnimation(L"monster_front");
+	Animation* pAnim = GetAnimator()->FindAnimation(L"monster_front");
 	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
 		pAnim->GetFrame(i).vOffset = offsetPos;
 	pAnim = GetAnimator()->FindAnimation(L"monster_damage");
@@ -44,7 +51,12 @@ Monster::~Monster()
 
 void Monster::Update()
 {
+	if (lastTime + delay <= TimeMgr::GetInst()->GetfDT()) {
 
+	}
+	if (KEY_TAP(KEY::SPACE)) {
+		CreateBullet();
+	}
 }
 
 void Monster::Render(HDC _dc)
@@ -69,4 +81,16 @@ void Monster::EnterCollision(Collider* _pOther)
 		if (m_iHp <= 0)
 			DeleteObject(this);
 	}
+}
+
+void Monster::CreateBullet()
+{
+	Vec2 vBulletPos = GetPos();
+	vBulletPos.y += GetScale().y / 2.f;
+	Bullet* pBullet = new Bullet;
+	pBullet->SetPos(vBulletPos);
+	pBullet->SetScale(Vec2(25.f, 25.f));
+	pBullet->SetDir(Vec2(0.f, 10.f));
+	Scene* pCurScene = SceneMgr::GetInst()->GetCurScene();
+	pCurScene->AddObject(pBullet, GROUP_TYPE::BULLET_MONSTER);
 }

@@ -50,7 +50,7 @@ void Scene_Start::Enter()
 		for (int i = 0; i < iMonster; i++)
 		{
 			pMonsterObj = new Monster;
-			pMonsterObj->SetName(L"Block");
+			pMonsterObj->SetName(L"Monster");
 			pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
 			pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 			pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
@@ -58,25 +58,25 @@ void Scene_Start::Enter()
 			AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 		}
 	}
-	{ //Block
-		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
-		int iBlock = 16;
-		float fMoveDist = 25.f;
-		float fObjScale = 64.f;
-		float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iBlock - 1);
+	//{ //Block
+	//	Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
+	//	int iBlock = 16;
+	//	float fMoveDist = 25.f;
+	//	float fObjScale = 64.f;
+	//	float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iBlock - 1);
 
-		Block* obj = nullptr;
+	//	Block* obj = nullptr;
 
-		for (int i = 0; i < iBlock; i++)
-		{
-			obj = new Block();
-			obj->SetName(L"Block");
-			obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
-			obj->SetCenterPos(obj->GetPos());
-			obj->SetScale(Vec2(150.f, 100.f));
-			AddObject(obj, GROUP_TYPE::MONSTER);
-		}
-	}
+	//	for (int i = 0; i < iBlock; i++)
+	//	{
+	//		obj = new Block();
+	//		obj->SetName(L"Block");
+	//		obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
+	//		obj->SetCenterPos(obj->GetPos());
+	//		obj->SetScale(Vec2(150.f, 100.f));
+	//		AddObject(obj, GROUP_TYPE::MONSTER);
+	//	}
+	//}
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::BULLET_MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::BALL);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::TRAY);

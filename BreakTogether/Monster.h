@@ -12,6 +12,8 @@ private:
 	int m_iDir; // 1, -1
 	int m_iHp;
 	bool isDamaged;
+	float delay;
+	float lastTime;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _f) { m_fSpeed = _f; }
@@ -22,6 +24,9 @@ public:
 	void Render(HDC _dc) override;
 	void EnterCollision(Collider* _pOther) override;
 	//    Monster* Clone() { return new Monster(*this); }
+
+	void CreateBullet();
+
 	CLONE(Monster);
 public:
 	Monster();

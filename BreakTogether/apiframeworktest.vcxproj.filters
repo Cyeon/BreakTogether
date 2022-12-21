@@ -110,6 +110,9 @@
     <Filter Include="Engine\03. Manager\BlockMgr">
       <UniqueIdentifier>{e1ab096d-f776-4230-b6bb-cf2169772fc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Bullet">
+      <UniqueIdentifier>{8c81f992-bdb4-44fc-9556-b22c18e3f7ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -229,6 +232,9 @@
     <ClInclude Include="BlockMgr.h">
       <Filter>Engine\03. Manager\BlockMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Engine\04. Object\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -343,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="BlockMgr.cpp">
       <Filter>Engine\03. Manager\BlockMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Engine\04. Object\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

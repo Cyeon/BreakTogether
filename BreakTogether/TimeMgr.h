@@ -24,4 +24,5 @@ public:
 public:
 	double GetDT() { return m_dDT; }
 	float GetfDT() { return static_cast<float>(m_dDT); }
+	float GetAcc() { return m_dAcc; }
 };
