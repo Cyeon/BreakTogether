@@ -57,12 +57,12 @@ void Player::Update()
 	{
 		if (vPos.x < vMousePos.x)
 		{
-			vPos.x += 300.f * fDT;
+			vPos.x += 500.f * fDT;
 			GetAnimator()->Play(L"character_right", true);
 		}
 		else
 		{
-			vPos.x -= 300.f * fDT;
+			vPos.x -= 500.f * fDT;
 			GetAnimator()->Play(L"character_left", true);
 		}
 	}
@@ -86,11 +86,11 @@ void Player::CreateBall()
 	vBallPos.y -= GetScale().y / 2.f + 10.f;
 
 	{ // Ball
-		Ball* pBall = new Ball;
+		Ball* pBall = new Ball();
 		pBall->SetName(L"BALL");
 		pBall->SetPos(vBallPos);
 		pBall->SetScale(Vec2(25.f, 25.f));
-		pBall->SetDir(Vec2(0.f, -1.f));
+		pBall->SetDir(Vec2(rand() % 2 ? 1.f : -1.f, -1.f));
 		CreateObject(pBall, GROUP_TYPE::BALL);
 	}
 }

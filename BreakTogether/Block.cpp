@@ -11,7 +11,6 @@ Block::Block() :m_iHp(1)
 	m_pImage->SetScale(Vec2(4.f, 4.f));
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(64.f, 64.f));
-	GetCollider()->SetOffsetPos(Vec2(32.f,32.f));
 }
 
 Block::~Block()

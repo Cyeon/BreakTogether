@@ -17,35 +17,60 @@ Ball::Ball()
 }
 
 Ball::~Ball()
-{
-}
+= default;
 
 void Ball::Bounce(BounceDir bounce_dir)
 {
-
-	SetDir(Vec2(-m_vDir.x, -m_vDir.y));
+	if (m_bounce) return;
+	m_bounce = true;
+	switch (bounce_dir)
+	{
+	case Ball::BounceDir::X:
+		m_vDir.x *= -1.f;
+		break;
+	case Ball::BounceDir::Y:
+		m_vDir.y *= -1.f;
+		break;
+	default:
+		break;
+	}
 }
 
 
 void Ball::Update()
 {
+	m_bounce = false;
 	Vec2 vPos = GetPos();
-	vPos.x += 700.f * m_vDir.x * fDT;
-	vPos.y += 700.f * m_vDir.y * fDT;
+
+	if (vPos.x < 0 || vPos.x > Core::GetInst()->GetResolution().x)
+	{
+		Bounce(BounceDir::X);
+	}
+
+	if (vPos.y < 0)
+	{
+		Bounce(BounceDir::Y);
+	}
+	else if (vPos.y > Core::GetInst()->GetResolution().y)
+	{
+		DeleteObject(this);
+	}
+
+	const auto normalized_dir = m_vDir.Normalize();
+
+	vPos.x += 700.f * normalized_dir.x * fDT;
+	vPos.y += 700.f * normalized_dir.y * fDT;
+
 	SetPos(vPos);
 
-	if (vPos.x < 0)
-	{
-		
-	}
 }
 
 void Ball::Render(HDC _dc)
 {
-	int Width = static_cast<int>(m_pImage->GetWidth());
-	int Height = static_cast<int>(m_pImage->GetHeight());
+	const int Width = static_cast<int>(m_pImage->GetWidth());
+	const int Height = static_cast<int>(m_pImage->GetHeight());
 
-	Vec2 vPos = GetPos();
+	const Vec2 vPos = GetPos();
 	TransparentBlt(_dc
 		, static_cast<int>(vPos.x - (float)(Width / 2))
 		, static_cast<int>(vPos.y - (float)(Height / 2))
@@ -59,8 +84,22 @@ void Ball::Render(HDC _dc)
 void Ball::EnterCollision(Collider* _pOther)
 {
 	Object* pOtherObj = _pOther->GetObj();
-	if (pOtherObj->GetName() == L"Block")
+
+	if (pOtherObj->GetName() == L"Tray")
 	{
-		Bounce(BounceDir::TOP);
+		Bounce(BounceDir::Y);
+		m_vDir.x = (GetPos().x - pOtherObj->GetPos().x) / 100.f;
+		return;
 	}
+
+	const Vec2 vPos = GetCollider()->GetFinalPos();
+	const Vec2 vOtherPos = pOtherObj->GetPos();
+
+	const float x_diff = vPos.x - vOtherPos.x;
+	const float y_diff = vPos.y - vOtherPos.y;
+
+	if (abs(x_diff) > abs(y_diff))
+		Bounce(BounceDir::X);
+	else
+		Bounce(BounceDir::Y);
 }
