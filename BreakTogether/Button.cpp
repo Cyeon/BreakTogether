@@ -10,8 +10,15 @@
 #include "MouseMgr.h"
 #include "Vec2.h"
 
-Button::Button() {
-	image_ = ResMgr::GetInst()->ImgLoad(L"Button", L"Image\\button.bmp");
+Button::Button() :m_wButtonPath(L"Image\\button.bmp"), m_wButtonHoverPath(L"Image\\button_hover.bmp"), m_wButtonName(L"StartButton"), m_wButtonHoverName(L"ButtonHover")
+{
+	image_ = ResMgr::GetInst()->ImgLoad(m_wButtonName, m_wButtonPath);
+}
+
+Button::Button(wstring buttonName, wstring buttonHName, wstring buttonPath, wstring buttonHoverPath)
+	: m_wButtonPath(buttonPath), m_wButtonHoverPath(buttonHoverPath), m_wButtonName(buttonName), m_wButtonHoverName(buttonHName)
+{
+	image_ = ResMgr::GetInst()->ImgLoad(buttonName, buttonPath);
 }
 
 void Button::Update()
@@ -30,12 +37,12 @@ void Button::Update()
 		}
 		else
 		{
-			image_ = ResMgr::GetInst()->ImgLoad(L"ButtonHover", L"Image\\button_hover.bmp");
+			image_ = ResMgr::GetInst()->ImgLoad(m_wButtonHoverName, m_wButtonHoverPath);
 		}
 	}
 	else
 	{
-		image_ = ResMgr::GetInst()->ImgLoad(L"Button", L"Image\\button.bmp");
+		image_ = ResMgr::GetInst()->ImgLoad(m_wButtonName, m_wButtonPath);
 	}
 }
 

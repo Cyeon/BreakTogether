@@ -241,8 +241,12 @@
     <ClInclude Include="Bullet.h">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Scene_GameOver.h" />
-    <ClInclude Include="ScoreMgr.h" />
+    <ClInclude Include="ScoreMgr.h">
+      <Filter>Engine\03. Manager\ScoreMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_GameOver.h">
+      <Filter>Engine\05. Scene\Scene_GameOver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -361,7 +365,11 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Scene_GameOver.cpp" />
-    <ClCompile Include="ScoreMgr.cpp" />
+    <ClCompile Include="ScoreMgr.cpp">
+      <Filter>Engine\03. Manager\ScoreMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_GameOver.cpp">
+      <Filter>Engine\05. Scene\Scene_GameOver</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

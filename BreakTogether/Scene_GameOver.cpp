@@ -2,6 +2,8 @@
 #include "Scene_GameOver.h"
 #include "TimeMgr.h"
 #include "ScoreMgr.h"
+#include "Button.h"
+#include "Core.h"
 
 void Scene_GameOver::Enter()
 {
@@ -11,6 +13,14 @@ void Scene_GameOver::Enter()
 	m_fPlayTime = TimeMgr::GetInst()->GetPlayTime();
 	swprintf(myLiveTime, sizeof(TCHAR) * 255, L"생존 시간 : %.2f", m_fPlayTime);
 	wsprintf((LPWSTR)myScore.c_str(), L"점수 : %d", ScoreMgr::GetInst()->GetCurrentScore());
+
+	{
+		Object* obj = new Button(L"ReplayButton", L"ReplayHoverButton", L"Image\\ReplayButton.bmp", L"Image\\Replay_Hover.bmp");
+		obj->SetName(L"Replay");
+		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2 + 300));
+		obj->SetScale(Vec2(100.f, 100.f));
+		AddObject(obj, GROUP_TYPE::UI);
+	}
 }
 
 void Scene_GameOver::Exit()
