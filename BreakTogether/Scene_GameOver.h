@@ -8,6 +8,7 @@ private:
 	TCHAR myLiveTime[255];
 	wstring myScore;
 	wstring otherScore;
+	vector<int> m_vScores;
 public:
 	void Enter() override;
 	void Exit() override;
@@ -17,4 +18,5 @@ public:
 
 	Scene_GameOver();
 	~Scene_GameOver() override;
+
 };

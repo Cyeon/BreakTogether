@@ -9,6 +9,7 @@
 #include "Animation.h"
 #include "Image.h"
 #include "MouseMgr.h"
+
 Player::Player() :m_fSpeed(500.f), m_iHp(3)
 {
 	// collider ����
