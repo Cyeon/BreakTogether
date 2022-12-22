@@ -50,6 +50,7 @@ Monster::Monster()
 
 Monster::~Monster()
 {
+	isdead = false;
 }
 
 void Monster::Update()
@@ -90,13 +91,18 @@ void Monster::Render(HDC _dc)
 
 void Monster::EnterCollision(Collider* _pOther)
 {
+	if(isdead) return;
 	Object* pOtherObj = _pOther->GetObj();
 	if (pOtherObj->GetName() == L"BALL")
 	{
 		m_iHp -= 1;
 		isDamaged = true;
 		if (m_iHp <= 0)
+		{
+			isdead = true;
 			DeleteObject(this);
+		}
+			
 	}
 }
 

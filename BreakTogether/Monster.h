@@ -15,6 +15,7 @@ private:
 	float atkDelay;
 	float lastAtkTime;
 	float aniDelayTime;
+	bool isdead;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _f) { m_fSpeed = _f; }

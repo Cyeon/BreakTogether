@@ -8,6 +8,7 @@ private:
 	int m_iHp;
 	Image* m_pImage;
 	Vec2 m_vCenterPos;
+	bool isdead;
 
 public:
 	Block();

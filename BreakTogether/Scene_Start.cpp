@@ -61,7 +61,7 @@ void Scene_Start::Enter()
 	{ //Block
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 		int iBlock = 30;
-		int iLine = 4;
+		int iLine = 5;
 		float fMoveDist = 25.f;
 		float fObjScale = 64.f;
 		float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iBlock - 1);
