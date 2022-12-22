@@ -4,6 +4,7 @@
 #include "Scene_01.h"
 #include "EventMgr.h"
 #include "Scene_Title.h"
+#include "Scene_GameOver.h"
 
 SceneMgr::SceneMgr()
 	: m_arrScene{}
@@ -40,10 +41,11 @@ void SceneMgr::Init()
 	m_arrScene[static_cast<UINT>(SCENE_TYPE::START)]->SetName(L"Start Scene");
 	m_arrScene[static_cast<UINT>(SCENE_TYPE::SCENE_01)] = new Scene_01;
 	m_arrScene[static_cast<UINT>(SCENE_TYPE::SCENE_01)]->SetName(L"Scene 01");
-
+	m_arrScene[static_cast<UINT>(SCENE_TYPE::OVER)] = new Scene_GameOver;
+	m_arrScene[static_cast<UINT>(SCENE_TYPE::OVER)]->SetName(L"GameOver Scene");
 	//	m_arrScene[(UINT)SCENE_TYPE::TOOL] = new Scene_Tool;
 	//	m_arrScene[(UINT)SCENE_TYPE::SCENE_02] = new Scene02;
-
+	
 
 	// 현재 씬 지정
 	m_pCurScene = m_arrScene[static_cast<UINT>(SCENE_TYPE::TITLE)];

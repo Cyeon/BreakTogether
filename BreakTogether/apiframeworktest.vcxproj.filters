@@ -113,6 +113,12 @@
     <Filter Include="Engine\04. Object\Bullet">
       <UniqueIdentifier>{8c81f992-bdb4-44fc-9556-b22c18e3f7ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Scene\Scene_GameOver">
+      <UniqueIdentifier>{1eb7a97a-f7a1-4f92-a524-96f2a5d5bbdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\ScoreMgr">
+      <UniqueIdentifier>{0beb72a6-024a-4564-831e-1dac0f8d8ad5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -235,6 +241,12 @@
     <ClInclude Include="Bullet.h">
       <Filter>Engine\04. Object\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreMgr.h">
+      <Filter>Engine\03. Manager\ScoreMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_GameOver.h">
+      <Filter>Engine\05. Scene\Scene_GameOver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -352,6 +364,12 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Engine\04. Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreMgr.cpp">
+      <Filter>Engine\03. Manager\ScoreMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_GameOver.cpp">
+      <Filter>Engine\05. Scene\Scene_GameOver</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

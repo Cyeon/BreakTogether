@@ -26,4 +26,5 @@ public:
 	double GetDT() { return m_dDT; }
 	float GetfDT() { return static_cast<float>(m_dDT); }
 	float GetPlayTime() { return m_dPlayTime; }
+	void ResetPlayTime() { m_dPlayTime = 0.f; }
 };

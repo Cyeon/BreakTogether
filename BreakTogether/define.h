@@ -84,6 +84,7 @@ enum class SCENE_TYPE
 	SCENE_01,
 	TOOL,
 	SCENE_02,
+	OVER,
 	END,
 };
 

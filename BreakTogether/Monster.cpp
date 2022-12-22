@@ -111,6 +111,7 @@ void Monster::CreateBullet()
 	Vec2 vBulletPos = GetPos();
 	vBulletPos.y += GetScale().y / 2.f;
 	Bullet* pBullet = new Bullet;
+	pBullet->SetName(L"Bullet");
 	pBullet->SetPos(vBulletPos);
 	pBullet->SetScale(Vec2(25.f, 25.f));
 	pBullet->SetDir(Vec2(0.f, 10.f));
