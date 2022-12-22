@@ -9,7 +9,7 @@
 #include "Animation.h"
 #include "Image.h"
 #include "MouseMgr.h"
-Player::Player()
+Player::Player() :m_fSpeed(500.f), m_iHp(3)
 {
 	// collider ����
 	CreateCollider();
@@ -57,12 +57,12 @@ void Player::Update()
 	{
 		if (vPos.x < vMousePos.x)
 		{
-			vPos.x += 500.f * fDT;
+			vPos.x += m_fSpeed * fDT;
 			GetAnimator()->Play(L"character_right", true);
 		}
 		else
 		{
-			vPos.x -= 500.f * fDT;
+			vPos.x -= m_fSpeed * fDT;
 			GetAnimator()->Play(L"character_left", true);
 		}
 	}
@@ -98,4 +98,14 @@ void Player::CreateBall()
 void Player::Render(HDC _dc)
 {
 	Component_Render(_dc);
+}
+
+void Player::EnterCollision(Collider * _pOther)
+{
+	if (_pOther->GetObj()->GetName() == L"Bullet") {
+		m_iHp--;
+		if (m_iHp <= 0) {
+			ChangeScene(SCENE_TYPE::OVER);
+		}
+	}
 }

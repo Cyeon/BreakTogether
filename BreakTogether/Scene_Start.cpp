@@ -10,6 +10,7 @@
 #include "Tray.h"
 #include "Block.h"
 #include "BlockMgr.h"
+#include "TimeMgr.h"
 
 Scene_Start::Scene_Start()
 = default;
@@ -21,6 +22,8 @@ void Scene_Start::Enter()
 {
 	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
 	SoundMgr::GetInst()->Play(L"BGM");
+
+	TimeMgr::GetInst()->ResetPlayTime();
 
 	Player* player;
 

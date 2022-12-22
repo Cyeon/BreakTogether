@@ -8,6 +8,8 @@ class Player :
 {
 private:
 	Image* m_pImage{};
+	float m_fSpeed;
+	int m_iHp;
 public:
 	Player();
 	~Player() override;
@@ -18,4 +20,6 @@ private:
 public:
 	void Update() override;
 	void Render(HDC _dc) override;
+	void SetSpeed(float _fSpeed) { m_fSpeed = _fSpeed; }
+	void EnterCollision(Collider* _pOther) override;
 };
