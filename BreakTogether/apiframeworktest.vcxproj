@@ -80,6 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)OutPut\bin_debug\</OutDir>
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -125,8 +126,9 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)OutPut\bin\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)BreakTogether\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -177,6 +179,7 @@
     <ClInclude Include="func.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageObject.h" />
+    <ClInclude Include="json.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MouseMgr.h" />
@@ -217,6 +220,7 @@
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageObject.cpp" />
+    <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BWindow.cpp">

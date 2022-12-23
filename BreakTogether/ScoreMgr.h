@@ -12,6 +12,9 @@ public:
 	int GetCurrentScore() { return m_iCurScore; }
 	void ScoreUp(int _score) { m_iCurScore += _score; }
 
+	void SaveData();
+	void LoadData();
+
 	void PushNewScore(int _score);
 	vector<int> GetHighScores();
 };

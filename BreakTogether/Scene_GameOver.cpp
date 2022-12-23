@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "Scene_GameOver.h"
+
+#include <fstream>
+
 #include "TimeMgr.h"
 #include "ScoreMgr.h"
 #include "Button.h"
