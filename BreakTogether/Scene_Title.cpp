@@ -28,7 +28,7 @@ void Scene_Title::Enter()
 	}
 
 	{ // 타이틀 로고 
-		Object* obj = new ImageObject(L"TitleLogo", L"Image\\Title.bmp", Vec2(1.f, 1.f));
+		Object* obj = new ImageObject(L"TitleLogo", L"Image\\Title.bmp", Vec2(1.5f, 1.5f));
 		obj->SetName(L"Background");
 		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2.f, Core::GetInst()->GetResolution().y / 2.5f));
 		obj->SetScale(Vec2(100.f, 100.f));
