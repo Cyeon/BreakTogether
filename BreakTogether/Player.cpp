@@ -54,7 +54,7 @@ void Player::Update()
 	Vec2 vPos = GetPos();
 	const Vec2 vMousePos = MouseMgr::GetInst()->GetMouse().vPos;
 
-	if (abs(vPos.x - vMousePos.x) > 1.f)
+	if (abs(vPos.x - vMousePos.x) > 5.f)
 	{
 		if (vPos.x < vMousePos.x)
 		{
