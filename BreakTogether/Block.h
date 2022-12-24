@@ -1,18 +1,21 @@
 #pragma once
 #include "Object.h"
+#include "Vec2.h"
 class Image;
 class Block :
 	public Object
 {
-private:
 	int m_iHp;
 	Image* m_pImage;
 	Vec2 m_vCenterPos;
 	bool isdead;
 	int& objectCount;
+	Vec2Int position;
+	bool isExplosionNow = false;
 
 public:
-	Block(int& objectCount);
+	Block(int& objectCount, Vec2 position);
+	Block(int& objectCount, Vec2Int position);
 	~Block();
 
 	void Update() override;
@@ -25,4 +28,5 @@ public:
 	CLONE(Block);
 
 	void EnterCollision(Collider* _pOther) override;
+	void DestroyBlock();
 };

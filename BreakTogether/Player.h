@@ -17,6 +17,7 @@ private:
 	void CreateBall();
 	Image* tray_image{};
 	CLONE(Player);
+	float runTime = 0;
 public:
 	void Update() override;
 	void Render(HDC _dc) override;

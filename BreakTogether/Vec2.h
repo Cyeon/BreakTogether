@@ -1,6 +1,12 @@
 #pragma once
 #include<cassert>
 
+struct Vec2Int
+{
+	int x;
+	int y;
+};
+
 class Vec2
 {
 public:

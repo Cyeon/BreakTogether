@@ -4,8 +4,9 @@
 #include"Image.h"
 #include "PathMgr.h"
 #include "ResMgr.h"
+#include "SkillMgr.h"
 
-Block::Block(int& objectCount) :m_iHp(1), objectCount(objectCount)
+Block::Block(int& objectCount, Vec2Int position) :m_iHp(1), objectCount(objectCount)
 {
 	objectCount++;
 	isdead = false;
@@ -13,6 +14,27 @@ Block::Block(int& objectCount) :m_iHp(1), objectCount(objectCount)
 	m_pImage->SetScale(Vec2(4.f, 4.f));
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(64.f, 64.f));
+
+	this->position.x = position.x;
+	this->position.y = position.y;
+
+	SkillMgr::GetInst()->OnSkill0.emplace_back([&]
+		{
+			this->isExplosionNow = true;
+		});
+
+	SkillMgr::GetInst()->OnBlockBreak.emplace_back([&](Vec2Int pos)
+		{
+			if (!this->isExplosionNow) return;
+			this->isExplosionNow = false;
+
+			const Vec2Int tempPos = this->position;
+			const float distX = abs(pos.x - this->position.x);
+			const float distY = abs(pos.y - this->position.y);
+
+			if ((distX + distY) <= 2.0f)
+				DestroyBlock();
+		});
 }
 
 Block::~Block()
@@ -31,14 +53,22 @@ void Block::Render(HDC _dc)
 }
 
 void Block::EnterCollision(Collider* _pOther) {
-	if (isdead) return;
 	Object* pOtherObj = _pOther->GetObj();
 	wstring wStr = pOtherObj->GetName();
 	if (wStr == L"BALL") {
 		SetDamage(1);
-		if (m_iHp <= 0) {
-			isdead = true;
-			DeleteObject(this);
-		}
+		if (m_iHp <= 0)
+			DestroyBlock();
 	}
+}
+
+void Block::DestroyBlock()
+{
+	if (isdead) return;
+	isdead = true;
+	DeleteObject(this);
+
+	if (!this->isExplosionNow) return;
+	this->isExplosionNow = false;
+	SkillMgr::GetInst()->BreakBlock(position);
 }

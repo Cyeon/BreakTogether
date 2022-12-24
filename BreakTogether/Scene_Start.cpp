@@ -10,6 +10,7 @@
 #include "Tray.h"
 #include "Block.h"
 #include "BlockMgr.h"
+#include "SkillMgr.h"
 #include "TimeMgr.h"
 
 Scene_Start::Scene_Start()
@@ -48,20 +49,22 @@ void Scene_Start::GenerateMap()
 		float fObjScale = 64.f;
 		float fTerm = (vResolution.x - ((fMoveDist + fObjScale / 2.f) * 2)) / static_cast<float>(iBlock - 1);
 
-		Block* obj = nullptr;
-
+		Vec2Int pos = { 0, 0 };
 		for (int i = 0; i < iLine; i++)
 		{
 			for (int j = 0; j < iBlock; j++)
 			{
-				obj = new Block(objectCount);
+				const auto obj = new Block(objectCount, pos);
 				obj->SetName(L"Block");
 				obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(j) * fTerm,
 				                 200.f + static_cast<float>(i) * fObjScale));
 				obj->SetCenterPos(obj->GetPos());
 				obj->SetScale(Vec2(150.f, 100.f));
 				AddObject(obj, GROUP_TYPE::MONSTER);
+				pos.x++;
 			}
+			pos.x = 0;
+			pos.y++;
 		}
 	}
 }
@@ -104,14 +107,29 @@ void Scene_Start::Exit()
 {
 	DeleteAll();
 	CollisionMgr::GetInst()->CheckReset();
+	SkillMgr::GetInst()->Clear();
 }
 
 void Scene_Start::Update()
 {
 	Scene::Update();
+	SkillMgr::GetInst()->Update(fDT);
 
 	if (objectCount <= 0)
 	{
 		GenerateMap();
+	}
+
+	if (KeyMgr::GetInst()->GetKey(KEY::Z) == KEY_STATE::HOLD)
+	{
+		SkillMgr::GetInst()->Skill0();
+	}
+	if (KeyMgr::GetInst()->GetKey(KEY::X) == KEY_STATE::HOLD)
+	{
+		SkillMgr::GetInst()->Skill1();
+	}
+	if (KeyMgr::GetInst()->GetKey(KEY::C) == KEY_STATE::HOLD)
+	{
+		SkillMgr::GetInst()->Skill2();
 	}
 }

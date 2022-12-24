@@ -9,6 +9,7 @@
 #include "Animation.h"
 #include "Image.h"
 #include "MouseMgr.h"
+#include "SkillMgr.h"
 
 Player::Player() :m_fSpeed(500.f), m_iHp(3)
 {
@@ -44,6 +45,16 @@ Player::Player() :m_fSpeed(500.f), m_iHp(3)
 	pAnim = GetAnimator()->FindAnimation(L"character_right");
 	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
 		pAnim->GetFrame(i).vOffset = offsetPos;
+
+	SkillMgr::GetInst()->OnSkill1.emplace_back([&]
+		{
+			CreateBall();
+		});
+
+	SkillMgr::GetInst()->OnSkill2.emplace_back([&]
+		{
+			runTime = 5; // 달리기 시간
+		});
 }
 
 Player::~Player()
@@ -56,14 +67,19 @@ void Player::Update()
 
 	if (abs(vPos.x - vMousePos.x) > 5.f)
 	{
+		float tempSpeed = m_fSpeed * fDT;
+		if (runTime > 0)
+		{
+			tempSpeed *= 1.3f;
+		}
 		if (vPos.x < vMousePos.x)
 		{
-			vPos.x += m_fSpeed * fDT;
+			vPos.x += tempSpeed;
 			GetAnimator()->Play(L"character_right", true);
 		}
 		else
 		{
-			vPos.x -= m_fSpeed * fDT;
+			vPos.x -= tempSpeed;
 			GetAnimator()->Play(L"character_left", true);
 		}
 	}
@@ -72,13 +88,10 @@ void Player::Update()
 		GetAnimator()->Play(L"character_front", true);
 	}
 
-	if (KEY_TAP(KEY::SPACE))
-	{
-		CreateBall();
-	}
-
 	SetPos(vPos);
 	GetAnimator()->Update();
+
+	runTime -= fDT;
 }
 
 void Player::CreateBall()
