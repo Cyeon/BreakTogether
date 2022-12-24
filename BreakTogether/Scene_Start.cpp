@@ -23,6 +23,8 @@ Scene_Start::~Scene_Start()
 
 void Scene_Start::GenerateMap()
 {
+	ScoreMgr::GetInst()->ScoreUp(1000);
+
 	{
 		// ���� ��ġ
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
@@ -77,6 +79,7 @@ void Scene_Start::Enter()
 	SoundMgr::GetInst()->Play(L"BGM");
 
 	TimeMgr::GetInst()->ResetPlayTime();
+	ItemMgr::GetInst()->ResetItem();
 
 	Player* player;
 
@@ -99,7 +102,7 @@ void Scene_Start::Enter()
 	}
 
 	GenerateMap();
-
+	ScoreMgr::GetInst()->ScoreUp(-1000);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::BULLET_MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::BALL);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::TRAY);
@@ -136,12 +139,11 @@ void Scene_Start::Update()
 		SkillMgr::GetInst()->Skill2();
 	}
 }
-}
 
 void Scene_Start::Render(HDC _dc)
 {
 	Scene::Render(_dc);
 	ItemMgr::GetInst()->Render(_dc);
-
-
+	SkillMgr::GetInst()->Render(_dc);
+	ScoreMgr::GetInst()->Render(_dc);
 }

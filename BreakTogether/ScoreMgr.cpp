@@ -12,6 +12,12 @@ ScoreMgr::~ScoreMgr()
 {
 }
 
+void ScoreMgr::Render(HDC _dc)
+{
+	swprintf(m_tcScoreText, sizeof(TCHAR) * 255, L"현재 점수: %d", m_iCurScore);
+	TextOut(_dc, 0, 600, m_tcScoreText, lstrlen(m_tcScoreText));
+}
+
 void ScoreMgr::PushNewScore(int _score)
 {
 	highScores.push_back(_score);

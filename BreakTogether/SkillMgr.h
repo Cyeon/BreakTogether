@@ -13,6 +13,9 @@ public:
 
 	std::vector<std::function<void(Vec2Int)>> OnBlockBreak;
 
+	RECT m_rUIRect{ 0,600,150,700 };
+	TCHAR skillCoolTimeChar[255];
+
 	float skillCoolTime0 = 0;
 	float skillCoolTime1 = 0;
 	float skillCoolTime2 = 0;
@@ -49,9 +52,9 @@ public:
 
 	void Update(float dt)
 	{
-		skillCoolTime0 -= dt;
-		skillCoolTime1 -= dt;
-		skillCoolTime2 -= dt;
+		skillCoolTime0 = max(0, skillCoolTime0 - dt);
+		skillCoolTime1 = max(0, skillCoolTime1 - dt);
+		skillCoolTime2 = max(0, skillCoolTime2 - dt);
 	}
 
 	void Clear()
@@ -62,5 +65,11 @@ public:
 
 		OnBlockBreak.clear();
 	}
-};
 
+	void Render(HDC _dc)
+	{
+		swprintf(skillCoolTimeChar, sizeof(TCHAR) * 255, L"½ºÅ³ ÄðÅ¸ÀÓ\n\n Æø¡Ú¹ß: %d\n¹° »Ñ¸®±â: %d\n ´Þ¸®±â :%d", (int)skillCoolTime0, (int)skillCoolTime1, (int)skillCoolTime2);
+		DrawText(_dc, skillCoolTimeChar, -1, &m_rUIRect, DT_LEFT);
+	}
+
+};

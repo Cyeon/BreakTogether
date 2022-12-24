@@ -104,7 +104,7 @@ void Monster::EnterCollision(Collider* _pOther)
 		isDamaged = true;
 		if (m_iHp <= 0)
 		{
-			ScoreMgr::GetInst()->ScoreUp(100);
+			ScoreMgr::GetInst()->ScoreUp(500);
 			isdead = true;
 			DeleteObject(this);
 		}

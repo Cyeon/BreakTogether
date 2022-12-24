@@ -43,7 +43,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -161,7 +161,6 @@
     <ClInclude Include="apiframeworktest.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Ball.h" />
-    <ClInclude Include="BlockMgr.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="BWindow.h">
@@ -212,7 +211,6 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="BlockMgr.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Collider.cpp" />

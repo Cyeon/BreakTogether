@@ -5,6 +5,7 @@
 #include "PathMgr.h"
 #include "ResMgr.h"
 #include "SkillMgr.h"
+#include "ScoreMgr.h"
 
 Block::Block(int& objectCount, Vec2Int position) :m_iHp(1), objectCount(objectCount)
 {
@@ -65,6 +66,7 @@ void Block::EnterCollision(Collider* _pOther) {
 void Block::DestroyBlock()
 {
 	if (isdead) return;
+	ScoreMgr::GetInst()->ScoreUp(10);
 	isdead = true;
 	DeleteObject(this);
 
