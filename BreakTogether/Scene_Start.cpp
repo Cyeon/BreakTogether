@@ -20,34 +20,10 @@ Scene_Start::Scene_Start()
 Scene_Start::~Scene_Start()
 = default;
 
-void Scene_Start::Enter()
+void Scene_Start::GenerateMap()
 {
-	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
-	SoundMgr::GetInst()->Play(L"BGM");
-
-	TimeMgr::GetInst()->ResetPlayTime();
-	ItemMgr::GetInst()->ResetItem();
-	ScoreMgr::GetInst()->ScoreReset();
-
-	Player* player;
-
-	{ // Player
-		player = new Player;
-		Object* obj = player;
-		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
-		obj->SetScale(Vec2(100.f, 100.f));
-		AddObject(obj, GROUP_TYPE::PLAYER);
-	}
-
-	{ // Tray
-		Object* obj = new Tray(*player);
-		obj->SetName(L"Tray");
-		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
-		obj->SetScale(Vec2(100.f, 100.f));
-		AddObject(obj, GROUP_TYPE::TRAY);
-	}
-
-	{ // ¸ó½ºÅÍ ¹èÄ¡
+	{
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 		int iMonster = 16;
 		float fMoveDist = 25.f;
@@ -56,7 +32,7 @@ void Scene_Start::Enter()
 		Monster* pMonsterObj = nullptr;
 		for (int i = 0; i < iMonster; i++)
 		{
-			pMonsterObj = new Monster;
+			pMonsterObj = new Monster(objectCount);
 			pMonsterObj->SetName(L"Monster");
 			pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(i) * fTerm, 50.f));
 			pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
@@ -65,7 +41,8 @@ void Scene_Start::Enter()
 			AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 		}
 	}
-	{ //Block
+	{
+		//Block
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 		int iBlock = 30;
 		int iLine = 5;
@@ -79,15 +56,46 @@ void Scene_Start::Enter()
 		{
 			for (int j = 0; j < iBlock; j++)
 			{
-				obj = new Block();
+				obj = new Block(objectCount);
 				obj->SetName(L"Block");
-				obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(j) * fTerm, 200.f + static_cast<float>(i) * fObjScale));
+				obj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + static_cast<float>(j) * fTerm,
+				                 200.f + static_cast<float>(i) * fObjScale));
 				obj->SetCenterPos(obj->GetPos());
 				obj->SetScale(Vec2(150.f, 100.f));
 				AddObject(obj, GROUP_TYPE::MONSTER);
 			}
 		}
 	}
+}
+
+void Scene_Start::Enter()
+{
+	SoundMgr::GetInst()->LoadSound(L"BGM", true, L"Sound\\pianobgm.wav");
+	SoundMgr::GetInst()->Play(L"BGM");
+
+	TimeMgr::GetInst()->ResetPlayTime();
+
+	Player* player;
+
+	{
+		// Player
+		player = new Player;
+		Object* obj = player;
+		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
+		obj->SetScale(Vec2(100.f, 100.f));
+		AddObject(obj, GROUP_TYPE::PLAYER);
+	}
+
+	{
+		// Tray
+		Object* obj = new Tray(*player);
+		obj->SetName(L"Tray");
+		obj->SetPos(Vec2(Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y - 50));
+		obj->SetScale(Vec2(100.f, 100.f));
+		AddObject(obj, GROUP_TYPE::TRAY);
+	}
+
+	GenerateMap();
 
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::BULLET_MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::BALL);
@@ -104,14 +112,16 @@ void Scene_Start::Update()
 {
 	Scene::Update();
 	ItemMgr::GetInst()->Update();
-	/*if (KEY_TAP(KEY::ENTER))
+	if (objectCount <= 0)
 	{
-		ChangeScene(SCENE_TYPE::SCENE_01);
-	}*/
+		GenerateMap();
+	}
 }
 
 void Scene_Start::Render(HDC _dc)
 {
 	Scene::Render(_dc);
 	ItemMgr::GetInst()->Render(_dc);
+
+
 }

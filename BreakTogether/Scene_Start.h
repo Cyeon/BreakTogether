@@ -5,6 +5,7 @@ class Scene_Start :
 	public Scene
 {
 public:
+	void GenerateMap();
 	void Enter() override;
 	void Exit() override;
 	void Update() override;
@@ -12,4 +13,5 @@ public:
 public:
 	Scene_Start();
 	~Scene_Start() override;
+	int objectCount = 0;
 };
