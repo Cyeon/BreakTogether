@@ -10,7 +10,7 @@ class Ball : public Object
 	Vec2 m_vDir;
 	Image* m_pImage;
 	bool m_bounce = false;
-
+	Vec2 m_vSize;
 
 	enum class BounceDir
 	{
@@ -24,6 +24,9 @@ public:
 		m_vDir = _vDir;
 		m_vDir.Normalize();
 	}
+
+	void SetSize(Vec2 _vSize) { m_vSize = _vSize; }
+	Vec2 GetSize() { return m_vSize; }
 
 	void Update() override;
 	void Render(HDC _dc) override;

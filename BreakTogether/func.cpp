@@ -29,3 +29,12 @@ void ChangeScene(SCENE_TYPE _eNext)
 
 	EventMgr::GetInst()->AddEvent(evn);
 }
+
+void BallSizeUp()
+{
+	tEvent evn = {};
+	evn.eEven = EVENT_TYPE::BALL_SIZEUP;
+	evn.lParam = NULL;
+
+	EventMgr::GetInst()->AddEvent(evn);
+}

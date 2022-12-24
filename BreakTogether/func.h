@@ -4,6 +4,7 @@ class Object;
 void CreateObject(Object* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(Object* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
+void BallSizeUp();
 
 template <typename T>
 void Safe_Delete_Vec(vector<T>& _vec)

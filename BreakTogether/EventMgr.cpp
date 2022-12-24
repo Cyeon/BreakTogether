@@ -4,6 +4,8 @@
 #include "SceneMgr.h"
 #include "Scene.h"
 #include "SoundMgr.h"
+#include "Ball.h"
+#include "Collider.h"
 
 EventMgr::EventMgr()
 {
@@ -59,6 +61,17 @@ void EventMgr::Excute(const tEvent& _eve)
 			SoundMgr::GetInst()->StopAll();
 			SceneMgr::GetInst()->ChangeScene(static_cast<SCENE_TYPE>(_eve.lParam));
 		}
+		break;
+	case EVENT_TYPE::BALL_SIZEUP:
+		{   
+			vector<Object*> vec=SceneMgr::GetInst()->GetCurScene()->GetGroupObject(GROUP_TYPE::BALL);
+			for (int i = 0; i < vec.size(); i++)
+			{
+				Ball* ball = static_cast<Ball*>(vec[i]);
+				ball->SetSize((ball->GetSize()) * 2);
+				ball->GetCollider()->SetScale(ball->GetCollider()->GetScale() * 2);
+			}
+	}
 		break;
 	}
 }

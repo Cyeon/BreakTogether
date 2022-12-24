@@ -9,8 +9,9 @@
 #include "Animation.h"
 #include "Image.h"
 #include "MouseMgr.h"
+#include "ItemMgr.h"
 
-Player::Player() :m_fSpeed(500.f), m_iHp(3)
+Player::Player() :m_fSpeed(500.f), m_iHp(3), m_bDamageAble(true)
 {
 	// collider ����
 	CreateCollider();
@@ -77,6 +78,22 @@ void Player::Update()
 		CreateBall();
 	}
 
+	if (KEY_TAP(KEY::ONE)) {
+		ItemMgr::GetInst()->HpHeal(this);
+	}
+
+	if (KEY_TAP(KEY::TWO)) {
+		ItemMgr::GetInst()->SizeUpBall();
+	}
+
+	if (KEY_TAP(KEY::THREE)) {
+		ItemMgr::GetInst()->DamageAble(this);
+	}
+
+	if (m_bDamageAble == false && ItemMgr::GetInst()->GetDAbleTime() + 3.f <= TimeMgr::GetInst()->GetPlayTime()) {
+		m_bDamageAble = true;
+	}
+
 	SetPos(vPos);
 	GetAnimator()->Update();
 }
@@ -104,6 +121,7 @@ void Player::Render(HDC _dc)
 void Player::EnterCollision(Collider * _pOther)
 {
 	if (_pOther->GetObj()->GetName() == L"Bullet") {
+		if (!m_bDamageAble) { return; }
 		m_iHp--;
 		if (m_iHp <= 0) {
 			ChangeScene(SCENE_TYPE::OVER);

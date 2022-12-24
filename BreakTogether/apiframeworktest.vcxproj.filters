@@ -119,6 +119,9 @@
     <Filter Include="Engine\03. Manager\ScoreMgr">
       <UniqueIdentifier>{0beb72a6-024a-4564-831e-1dac0f8d8ad5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\ItemMgr">
+      <UniqueIdentifier>{ca28691b-e892-4827-8e8c-8c0c4f00664f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -250,6 +253,9 @@
     <ClInclude Include="json.h">
       <Filter>Default</Filter>
     </ClInclude>
+    <ClInclude Include="ItemMgr.h">
+      <Filter>Engine\03. Manager\ItemMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -376,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="jsoncpp.cpp">
       <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemMgr.cpp">
+      <Filter>Engine\03. Manager\ItemMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
