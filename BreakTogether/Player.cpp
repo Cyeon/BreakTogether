@@ -19,7 +19,7 @@ Player::Player() :m_fSpeed(500.f), m_iHp(3), m_bDamageAble(true)
 
 	// image ���ε�
 	Image* p_img = ResMgr::GetInst()->ImgLoad(L"PlayerAni", L"Image\\character.bmp");
-
+	m_pHpImage = ResMgr::GetInst()->ImgLoad(L"HpImg", L"Image\\Heart.bmp");
 	// animator ���� �� animation ���
 	CreateAnimator();
 
@@ -115,6 +115,18 @@ void Player::CreateBall()
 
 void Player::Render(HDC _dc)
 {
+	int Width = (int)m_pHpImage->GetWidth();
+	int Height = (int)m_pHpImage->GetHeight();
+	for (int i = 0; i < m_iHp; i++)
+	{
+		TransparentBlt(_dc
+			, (int)(0.f+i*(64.f))
+			, (int)(800.f)
+			, 64.f, 64.f
+			, m_pHpImage->GetDC()
+			, 0, 0, Width, Height,
+			RGB(255, 0, 255));
+	}
 	Component_Render(_dc);
 }
 

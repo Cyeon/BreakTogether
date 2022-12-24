@@ -11,6 +11,7 @@ private:
 	float m_fSpeed;
 	int m_iHp;
 	bool m_bDamageAble;
+	Image* m_pHpImage;
 public:
 	Player();
 	~Player() override;

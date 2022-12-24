@@ -14,7 +14,6 @@ ItemMgr::~ItemMgr()
 
 void ItemMgr::Init()
 {
-	ResetItem();
 }
 
 void ItemMgr::Update()
@@ -32,12 +31,14 @@ void ItemMgr::ResetItem()
 void ItemMgr::SizeUpBall()
 {
 	if (m_iItemAmountArr[0] <= 0) { return; }
+	m_iItemAmountArr[0]--;
 	BallSizeUp();
 }
 
 void ItemMgr::HpHeal(Player* _player)
 {
 	if (m_iItemAmountArr[1] <= 0) { return; }
+	m_iItemAmountArr[1]--;
 	int hp = _player->GetHp();
 	_player->SetHp(hp + 1);
 }
@@ -45,6 +46,7 @@ void ItemMgr::HpHeal(Player* _player)
 void ItemMgr::DamageAble(Player* _player)
 {
 	if (m_iItemAmountArr[2] <= 0) { return; }
+	m_iItemAmountArr[2]--;
 	checkDAbleTime = TimeMgr::GetInst()->GetPlayTime();
 	_player->SetDamageAlbe(false);
 }

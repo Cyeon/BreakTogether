@@ -11,6 +11,7 @@
 #include "Block.h"
 #include "BlockMgr.h"
 #include "TimeMgr.h"
+#include "ItemMgr.h"
 
 Scene_Start::Scene_Start()
 = default;
@@ -24,6 +25,7 @@ void Scene_Start::Enter()
 	SoundMgr::GetInst()->Play(L"BGM");
 
 	TimeMgr::GetInst()->ResetPlayTime();
+	ItemMgr::GetInst()->ResetItem();
 
 	Player* player;
 
@@ -84,6 +86,7 @@ void Scene_Start::Enter()
 			}
 		}
 	}
+
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::BULLET_MONSTER);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::BALL);
 	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::BALL, GROUP_TYPE::TRAY);
