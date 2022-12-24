@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "SceneMgr.h"
 #include "KeyMgr.h"
+#include "ScoreMgr.h"
 
 Monster::Monster()
 	: m_fSpeed(100.f)
@@ -20,6 +21,7 @@ Monster::Monster()
 	, atkDelay(1.5f)
 	, lastAtkTime(0.f)
 	, aniDelayTime(0.f)
+	, isdead(false)
 {
 	srand(time(NULL));
 	CreateCollider();
@@ -99,6 +101,7 @@ void Monster::EnterCollision(Collider* _pOther)
 		isDamaged = true;
 		if (m_iHp <= 0)
 		{
+			ScoreMgr::GetInst()->ScoreUp(100);
 			isdead = true;
 			DeleteObject(this);
 		}
