@@ -47,12 +47,12 @@ Player::Player() :m_fSpeed(500.f), m_iHp(3), m_bDamageAble(true)
 	for (size_t i = 0; i < pAnim->GetMaxFrame(); i++)
 		pAnim->GetFrame(i).vOffset = offsetPos;
 
-	SkillMgr::GetInst()->OnSkill1.emplace_back([&]
+	SkillMgr::GetInst()->OnSkillSpawn.emplace_back([&]
 		{
 			CreateBall();
 		});
 
-	SkillMgr::GetInst()->OnSkill2.emplace_back([&]
+	SkillMgr::GetInst()->OnSkillRun.emplace_back([&]
 		{
 			runTime = 5; // 달리기 시간
 		});

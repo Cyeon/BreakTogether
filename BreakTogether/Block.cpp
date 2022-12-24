@@ -19,7 +19,7 @@ Block::Block(int& objectCount, Vec2Int position) :m_iHp(1), objectCount(objectCo
 	this->position.x = position.x;
 	this->position.y = position.y;
 
-	SkillMgr::GetInst()->OnSkill0.emplace_back([&]
+	SkillMgr::GetInst()->OnSkillBoom.emplace_back([&]
 		{
 			this->isExplosionNow = true;
 		});

@@ -128,15 +128,15 @@ void Scene_Start::Update()
 
 	if (KeyMgr::GetInst()->GetKey(KEY::Z) == KEY_STATE::HOLD)
 	{
-		SkillMgr::GetInst()->Skill0();
+		SkillMgr::GetInst()->SkillBoom();
 	}
 	if (KeyMgr::GetInst()->GetKey(KEY::X) == KEY_STATE::HOLD)
 	{
-		SkillMgr::GetInst()->Skill1();
+		SkillMgr::GetInst()->SkillSpawn();
 	}
 	if (KeyMgr::GetInst()->GetKey(KEY::C) == KEY_STATE::HOLD)
 	{
-		SkillMgr::GetInst()->Skill2();
+		SkillMgr::GetInst()->SkillRun();
 	}
 }
 
