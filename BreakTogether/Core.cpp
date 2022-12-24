@@ -10,6 +10,7 @@
 #include "EventMgr.h"
 #include "MouseMgr.h"
 #include "SoundMgr.h"
+#include "ItemMgr.h"
 
 Core::Core()
 	: m_ptResolution{}

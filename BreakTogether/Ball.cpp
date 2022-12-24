@@ -8,12 +8,14 @@
 #include "Core.h"
 
 Ball::Ball()
-	: m_vDir(Vec2(1.f, 1.f))
+	: m_vDir(Vec2(1.f, 1.f)), m_vSize(Vec2(0, 0))
 {
 	m_pImage = ResMgr::GetInst()->ImgLoad(L"BallImg", L"Image\\ball.bmp");
 	m_vDir.Normalize();
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(15.f, 15.f));
+	m_vSize.x = static_cast<int>(m_pImage->GetWidth());
+	m_vSize.y = static_cast<int>(m_pImage->GetHeight());
 }
 
 Ball::~Ball()
@@ -67,21 +69,21 @@ void Ball::Update()
 
 void Ball::Render(HDC _dc)
 {
-	const int Width = static_cast<int>(m_pImage->GetWidth());
-	const int Height = static_cast<int>(m_pImage->GetHeight());
+	const int Width = m_vSize.x;
+	const int Height = m_vSize.y;
 
 	const Vec2 vPos = GetPos();
 	TransparentBlt(_dc
-		, static_cast<int>(vPos.x - (float)(Width / 2))
-		, static_cast<int>(vPos.y - (float)(Height / 2))
+		, static_cast<int>(vPos.x - (float)(static_cast<int>(m_pImage->GetWidth()) / 2))
+		, static_cast<int>(vPos.y - (float)(static_cast<int>(m_pImage->GetHeight()) / 2))
 		, Width, Height
 		, m_pImage->GetDC()
-		, 0, 0, Width, Height
+		, 0, 0, (static_cast<int>(m_pImage->GetWidth())), static_cast<int>(m_pImage->GetHeight())
 		, RGB(255, 0, 255));
 	Component_Render(_dc);
 }
 
-void Ball::EnterCollision(Collider* _pOther)
+void Ball::EnterCollision(Collider * _pOther)
 {
 	Object* pOtherObj = _pOther->GetObj();
 

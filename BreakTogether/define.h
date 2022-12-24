@@ -62,6 +62,9 @@ enum class KEY
 	ESC,
 	LBTN,
 	RBTN,
+	ONE,
+	TWO,
+	THREE,
 	LAST // 끝 (END=는 있으니까)
 };
 
@@ -108,7 +111,7 @@ enum class EVENT_TYPE
 	CREATE_OBJECT,
 	DELETE_OBJECT,
 	SCENE_CHANGE,
-
+	BALL_SIZEUP,
 	END,
 };
 

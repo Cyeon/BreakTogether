@@ -28,6 +28,8 @@ int g_arrVK[static_cast<int>(KEY::LAST)] =
 	'V',
 	'B',
 	VK_MENU, VK_LSHIFT, VK_CONTROL, VK_SPACE, VK_RETURN, VK_ESCAPE,
+	VK_LEFT,VK_RIGHT,
+	'1','2','3'
 };
 
 KeyMgr::KeyMgr()
@@ -42,7 +44,7 @@ void KeyMgr::Init()
 {
 	for (int i = 0; i < static_cast<int>(KEY::LAST); i++)
 	{
-		m_vecKey.push_back(tKeyInfo{KEY_STATE::NONE, false});
+		m_vecKey.push_back(tKeyInfo{ KEY_STATE::NONE, false });
 	}
 }
 

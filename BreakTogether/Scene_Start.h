@@ -9,6 +9,7 @@ public:
 	void Enter() override;
 	void Exit() override;
 	void Update() override;
+	void Render(HDC _dc) override;
 public:
 	Scene_Start();
 	~Scene_Start() override;

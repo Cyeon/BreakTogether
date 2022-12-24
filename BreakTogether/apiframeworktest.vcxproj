@@ -179,6 +179,7 @@
     <ClInclude Include="func.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageObject.h" />
+    <ClInclude Include="ItemMgr.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Monster.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageObject.cpp" />
+    <ClCompile Include="ItemMgr.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="main.cpp" />

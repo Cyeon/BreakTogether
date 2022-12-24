@@ -15,7 +15,7 @@ void Scene_GameOver::Enter()
 
 	m_fPlayTime = TimeMgr::GetInst()->GetPlayTime();
 	swprintf(myLiveTime, sizeof(TCHAR) * 255, L"생존 시간 : %.2f", m_fPlayTime);
-	wsprintf((LPWSTR)myScore.c_str(), L"점수 : %d", ScoreMgr::GetInst()->GetCurrentScore());
+  	wsprintf((LPWSTR)myScore.c_str(), L"점수 : %d", ScoreMgr::GetInst()->GetCurrentScore());
 
 	{ // RestartButton
 		Object* obj = new Button(L"ReplayButton", L"ReplayHoverButton", L"Image\\ReplayButton.bmp", L"Image\\Replay_Hover.bmp");

@@ -12,6 +12,8 @@
 #include "BlockMgr.h"
 #include "SkillMgr.h"
 #include "TimeMgr.h"
+#include "ItemMgr.h"
+#include "ScoreMgr.h"
 
 Scene_Start::Scene_Start()
 = default;
@@ -22,7 +24,7 @@ Scene_Start::~Scene_Start()
 void Scene_Start::GenerateMap()
 {
 	{
-		// ¸ó½ºÅÍ ¹èÄ¡
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 		Vec2 vResolution(Vec2(Core::GetInst()->GetResolution()));
 		int iMonster = 16;
 		float fMoveDist = 25.f;
@@ -115,6 +117,7 @@ void Scene_Start::Update()
 	Scene::Update();
 	SkillMgr::GetInst()->Update(fDT);
 
+	ItemMgr::GetInst()->Update();
 	if (objectCount <= 0)
 	{
 		GenerateMap();
@@ -132,4 +135,13 @@ void Scene_Start::Update()
 	{
 		SkillMgr::GetInst()->Skill2();
 	}
+}
+}
+
+void Scene_Start::Render(HDC _dc)
+{
+	Scene::Render(_dc);
+	ItemMgr::GetInst()->Render(_dc);
+
+
 }
