@@ -11,10 +11,11 @@ private:
 	bool m_bIsPlaying;
 	int m_iItemAmountArr[3];
 	float checkDAbleTime;
+	wstring m_wstrItemAmount;
+	TCHAR itemAmount[255];
 public:
-	void Init();
 	void Update();
-
+	void Render(HDC _dc);
 	void ResetItem();
 
 	void SizeUpBall();

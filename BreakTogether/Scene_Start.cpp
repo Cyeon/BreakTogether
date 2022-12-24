@@ -12,6 +12,7 @@
 #include "BlockMgr.h"
 #include "TimeMgr.h"
 #include "ItemMgr.h"
+#include "ScoreMgr.h"
 
 Scene_Start::Scene_Start()
 = default;
@@ -26,6 +27,7 @@ void Scene_Start::Enter()
 
 	TimeMgr::GetInst()->ResetPlayTime();
 	ItemMgr::GetInst()->ResetItem();
+	ScoreMgr::GetInst()->ScoreReset();
 
 	Player* player;
 
@@ -101,8 +103,15 @@ void Scene_Start::Exit()
 void Scene_Start::Update()
 {
 	Scene::Update();
+	ItemMgr::GetInst()->Update();
 	/*if (KEY_TAP(KEY::ENTER))
 	{
 		ChangeScene(SCENE_TYPE::SCENE_01);
 	}*/
+}
+
+void Scene_Start::Render(HDC _dc)
+{
+	Scene::Render(_dc);
+	ItemMgr::GetInst()->Render(_dc);
 }

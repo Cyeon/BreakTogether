@@ -11,6 +11,7 @@ public:
 
 	int GetCurrentScore() { return m_iCurScore; }
 	void ScoreUp(int _score) { m_iCurScore += _score; }
+	void ScoreReset() { m_iCurScore = 0; }
 
 	void SaveData();
 	void LoadData();

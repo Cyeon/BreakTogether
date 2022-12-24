@@ -60,7 +60,6 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	KeyMgr::GetInst()->Init();
 	MouseMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
-	ItemMgr::GetInst()->Init();
 
 	return S_OK;
 }
@@ -77,7 +76,6 @@ void Core::Update()
 	TimeMgr::GetInst()->Update();
 	KeyMgr::GetInst()->Update();
 	MouseMgr::GetInst()->Update();
-	ItemMgr::GetInst()->Update();
 
 	// ==== Scene Update ====
 	SceneMgr::GetInst()->Update();
