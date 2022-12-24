@@ -5,8 +5,9 @@
 #include "PathMgr.h"
 #include "ResMgr.h"
 
-Block::Block() :m_iHp(1)
+Block::Block(int& objectCount) :m_iHp(1), objectCount(objectCount)
 {
+	objectCount++;
 	isdead = false;
 	m_pImage = ResMgr::GetInst()->ImgLoad(L"BasicBlockImg", L"Image\\BasicBlock.bmp");
 	m_pImage->SetScale(Vec2(4.f, 4.f));
@@ -16,6 +17,7 @@ Block::Block() :m_iHp(1)
 
 Block::~Block()
 {
+	objectCount--;
 }
 
 void Block::Update()

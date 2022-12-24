@@ -9,9 +9,10 @@ private:
 	Image* m_pImage;
 	Vec2 m_vCenterPos;
 	bool isdead;
+	int& objectCount;
 
 public:
-	Block();
+	Block(int& objectCount);
 	~Block();
 
 	void Update() override;

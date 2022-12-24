@@ -10,7 +10,7 @@
 #include "SceneMgr.h"
 #include "KeyMgr.h"
 
-Monster::Monster()
+Monster::Monster(int& objectCount)
 	: m_fSpeed(100.f)
 	, m_vCenterPos(Vec2(0.f, 0.f))
 	, m_fMaxDistance(50.f)
@@ -20,7 +20,9 @@ Monster::Monster()
 	, atkDelay(1.5f)
 	, lastAtkTime(0.f)
 	, aniDelayTime(0.f)
+	, objectCount(objectCount)
 {
+	objectCount++;
 	srand(time(NULL));
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(60.f, 60.f));
@@ -50,6 +52,7 @@ Monster::Monster()
 
 Monster::~Monster()
 {
+	objectCount--;
 	isdead = false;
 }
 
@@ -91,7 +94,7 @@ void Monster::Render(HDC _dc)
 
 void Monster::EnterCollision(Collider* _pOther)
 {
-	if(isdead) return;
+	if (isdead) return;
 	Object* pOtherObj = _pOther->GetObj();
 	if (pOtherObj->GetName() == L"BALL")
 	{
@@ -102,7 +105,7 @@ void Monster::EnterCollision(Collider* _pOther)
 			isdead = true;
 			DeleteObject(this);
 		}
-			
+
 	}
 }
 

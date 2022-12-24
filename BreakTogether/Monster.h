@@ -16,6 +16,7 @@ private:
 	float lastAtkTime;
 	float aniDelayTime;
 	bool isdead;
+	int& objectCount;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _f) { m_fSpeed = _f; }
@@ -32,6 +33,6 @@ public:
 
 	CLONE(Monster);
 public:
-	Monster();
+	Monster(int& objectCount);
 	~Monster() override;
 };
