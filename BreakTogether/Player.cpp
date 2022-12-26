@@ -89,6 +89,18 @@ void Player::Update()
 		GetAnimator()->Play(L"character_front", true);
 	}
 
+	if (KEY_TAP(KEY::ONE)) {
+		ItemMgr::GetInst()->HpHeal(this);
+	}
+
+	if (KEY_TAP(KEY::TWO)) {
+		ItemMgr::GetInst()->SizeUpBall();
+	}
+
+	if (KEY_TAP(KEY::THREE)) {
+		ItemMgr::GetInst()->DamageAble(this);
+	}
+
 	SetPos(vPos);
 	GetAnimator()->Update();
 
